@@ -38,7 +38,7 @@ function App() {
 
                 <ColumnNeedDone StatusCard={"Нужно сделать"} />
 
-                <ColumnInJob StatusCard={"В работе"} />
+                <ColumnInJob StatusCard={"В 7работе"} />
 
                 <ColumnInTesting StatusCard={"Тестирование"} />
 
