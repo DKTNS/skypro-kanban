@@ -1,5 +1,3 @@
-
-
 export default function Card ({ StatusTask, NameTask }) {
     return (
         <div class="cards__item">
