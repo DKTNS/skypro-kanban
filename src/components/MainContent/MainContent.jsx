@@ -1,4 +1,4 @@
-export function MainContent({ children }) {
+export default function MainContent({ children }) {
     return (
         <main class="main">
             <div class="container">

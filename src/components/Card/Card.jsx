@@ -1,4 +1,6 @@
-export function Card ({ StatusTask, NameTask }) {
+
+
+export default function Card ({ StatusTask, NameTask }) {
     return (
         <div class="cards__item">
             <div class="cards__card card">
