@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+
 import PopUpExit from './components/popup/popexit/PopExit.jsx'
 import PopUpNewCard from './components/popup/popnewcard/PopNewCard.jsx'
 import PopUpBrowse from './components/popup/popbrowse/PopBrowse.jsx'
@@ -14,8 +15,9 @@ function App() {
 
   return (
     <>
-      <div class="wrapper"><h1></h1>
+      <div className="wrapper"><h1></h1>
         {/*<!-- pop-up start-->*/}
+
         <PopUpExit />
         <PopUpNewCard />
         <PopUpBrowse />
