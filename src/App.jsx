@@ -9,13 +9,15 @@ import MainContent from './components/MainContent/MainContent'
 
 
 
+
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <div class="wrapper"><h1></h1>
+      <div className="wrapper"><h1></h1>
         {/*<!-- pop-up start-->*/}
+
         <PopUpExit />
         <PopUpNewCard />
         <PopUpBrowse />
