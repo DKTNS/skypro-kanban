@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import './App.css'
+import PopUpExit from './components/popup/popexit/PopExit'
+import PopUpNewCard from './components/popup/popnewcard/PopNewCard'
+import PopUpBrowse from './components/popup/popbrowse/PopBrowse'
+import Header from './components/Header/Header'
+import MainColumn from './components/MainColumn/MainColumn'
+import MainContent from './components/MainContent/MainContent'
 
-import PopUpExit from './components/popup/popexit/PopExit.jsx'
-import PopUpNewCard from './components/popup/popnewcard/PopNewCard.jsx'
-import PopUpBrowse from './components/popup/popbrowse/PopBrowse.jsx'
-import Header from './components/Header/Header.jsx'
-import MainColumn from './components/MainColumn/MainColumn.jsx'
-import MainContent from './components/MainContent/MainContent.jsx'
 
 
 
