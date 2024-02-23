@@ -5,6 +5,7 @@ import PopUpNewCard from './components/popup/popnewcard/PopUpNewCard'
 import PopUpBrowse from './components/popup/popbrowse/PopUpBrowse'
 import MainColumn from './components/MainColumn/MainColumn'
 import MainContent from './components/MainContent/MainContent'
+import Header from './components/Header/Header'
 
 
 
@@ -22,7 +23,8 @@ function App() {
         <PopUpBrowse />
         {/*<!-- pop-up end-->*/}
 
-        
+        <Header />
+
         <MainContent>
           <MainColumn title={"Новый статус"} />
           <MainColumn title={"Нужно сделать"} />
