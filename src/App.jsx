@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import './App.css'
-import PopUpExit from './components/popup/popexit/PopExit'
-import PopUpNewCard from './components/popup/popnewcard/PopNewCard'
-import PopUpBrowse from './components/popup/popbrowse/PopBrowse'
-import Header from './components/Header/Header'
+import PopUpExit from './components/popup/popexit/PopUpExit'
+import PopUpNewCard from './components/popup/popnewcard/PopUpNewCard'
+import PopUpBrowse from './components/popup/popbrowse/PopUpBrowse'
 import MainColumn from './components/MainColumn/MainColumn'
 import MainContent from './components/MainContent/MainContent'
+import Header from './components/Header/Header'
 
 
 
 
-function App() {
+ function App() {
   const [count, setCount] = useState(0)
 
   return (

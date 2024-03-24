@@ -1,4 +1,4 @@
-function PopUpExit() {
+export default function PopUpExit() {
     return (
         <div className="pop-exit" id="popExit">
             <div className="pop-exit__container">
@@ -21,5 +21,3 @@ function PopUpExit() {
         </div>
     )
 }
-
-export default PopUpExit;

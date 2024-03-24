@@ -1,6 +1,6 @@
-import Card from './components/Card/Card'
+import Card from '../Card/Card'
 
-export function MainColumn ({ title }) {
+export default function MainColumn ({ title }) {
   return (
     <div class="main__column column">
       <div class="column__title">
