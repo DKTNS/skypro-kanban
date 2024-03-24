@@ -1,6 +1,6 @@
-import Card from '../Card/Card'
+import Card from "../Card/Card";
 
-export default function MainColumn ({ title }) {
+export default function MainColumn({ title }) {
   return (
     <div class="main__column column">
       <div class="column__title">
@@ -14,5 +14,5 @@ export default function MainColumn ({ title }) {
         <Card StatusTask={"Web Design"} NameTask={"Задача №5"} />
       </div>
     </div>
-  )
+  );
 }
