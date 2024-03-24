@@ -61,15 +61,7 @@ function App() {
             ))}
           </MainContent>
         )}
-        <MainContent>
-          {statusList.map((status) => (
-            <MainColumn
-              title={status}
-              key={status}
-              cardList={cards.filter((card) => card.status === status)}
-            />
-          ))}
-        </MainContent>
+        
       </div>
       <script src="js/script.js"></script>
     </>

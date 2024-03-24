@@ -1,4 +1,4 @@
-export default function Card({ StatusTask, NameTask }) {
+export default function Card({ StatusTask, NameTask, date }) {
   return (
     <div class="cards__item">
       <div class="cards__card card">
@@ -47,7 +47,7 @@ export default function Card({ StatusTask, NameTask }) {
                 </clipPath>
               </defs>
             </svg>
-            <p>30.10.23</p>
+            <p>{date}</p>
           </div>
         </div>
       </div>

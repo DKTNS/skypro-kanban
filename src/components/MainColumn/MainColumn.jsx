@@ -8,12 +8,7 @@ export default function MainColumn({ title, cardList }) {
         <p>{title}</p>
       </div>
       <div class="cards">
-        {cardList.map((card) => <Card StatusTask={card.theme} NameTask={card.title} key = {card.id} />)}
-        {/* <Card StatusTask={"Web Design"} NameTask={"Задача №1"} />
-        <Card StatusTask={"Web Design"} NameTask={"Задача №2"} />
-        <Card StatusTask={"Research"} NameTask={"Задача №3"} />
-        <Card StatusTask={"Copywriting"} NameTask={"Задача №4"} />
-        <Card StatusTask={"Web Design"} NameTask={"Задача №5"} /> */}
+        {cardList.map((card) => <Card StatusTask={card.theme} NameTask={card.title} date={card.date} key = {card.id} />)}
       </div>
     </div>
   );
