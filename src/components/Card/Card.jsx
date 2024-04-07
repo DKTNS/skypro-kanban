@@ -3,25 +3,25 @@ import { topicHeader ,topicStyles } from "../lib/topic.js";
 
 export default function Card({ StatusTask, NameTask, date }) {
   return (
-    <div className="cards__item">
-      <div className="cards__card card">
-        <div className="card__group">
+    <CS.CardItem>
+      <CS.CardCard>
+        <CS.CardGroup>
           <CS.CardTopic $themeColor={topicHeader[StatusTask]}>
             <CS.TopicText>{StatusTask}</CS.TopicText>
           </CS.CardTopic>
           <a href="#popBrowse" target="_self">
-            <div className="card__btn">
+            <CS.CardBtn>
               <div></div>
               <div></div>
               <div></div>
-            </div>
+            </CS.CardBtn>
           </a>
-        </div>
-        <div className="card__content">
+        </CS.CardGroup>
+        <CS.CardContent>
           <a href="" target="_blank">
-            <h3 className="card__title">{NameTask}</h3>
+            <CS.CardTitle>{NameTask}</CS.CardTitle>
           </a>
-          <div className="card__date">
+          <CS.CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="13"
@@ -51,9 +51,9 @@ export default function Card({ StatusTask, NameTask, date }) {
               </defs>
             </svg>
             <p>{date}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+          </CS.CardDate>
+        </CS.CardContent>
+      </CS.CardCard>
+    </CS.CardItem>
   );
 }
