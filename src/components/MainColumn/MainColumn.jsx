@@ -1,15 +1,15 @@
 import Card from "../Card/Card";
-
+import * as MCO from "./MainColumn.Styled";
 
 export default function MainColumn({ title, cardList }) {
   return (
-    <div className="main__column column">
-      <div className="column__title">
+    <MCO.MainColumn>
+      <MCO.ColumnTitle>
         <p>{title}</p>
-      </div>
-      <div className="cards">
+      </MCO.ColumnTitle>
+      <MCO.MainColumnCards>
         {cardList.map((card) => <Card StatusTask={card.theme} NameTask={card.title} date={card.date} key = {card.id} />)}
-      </div>
-    </div>
+      </MCO.MainColumnCards>
+    </MCO.MainColumn>
   );
 }
