@@ -1,11 +1,14 @@
+import * as CS from "./Card.styled.js";
+import { topicHeader ,topicStyles } from "../lib/topic.js";
+
 export default function Card({ StatusTask, NameTask, date }) {
   return (
     <div className="cards__item">
       <div className="cards__card card">
         <div className="card__group">
-          <div className="card__theme _orange">
-            <p className="_orange">{StatusTask}</p>
-          </div>
+          <CS.CardTopic $themeColor={topicHeader[StatusTask]}>
+            <CS.TopicText>{StatusTask}</CS.TopicText>
+          </CS.CardTopic>
           <a href="#popBrowse" target="_self">
             <div className="card__btn">
               <div></div>
