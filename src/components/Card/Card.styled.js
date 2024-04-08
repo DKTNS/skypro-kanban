@@ -18,7 +18,7 @@ export const CardTopic = styled.div`
     color: ${({ $themeColor }) => topicStyles[$themeColor]?.color || "#FFFFFF"};
   }
 `;
-
+//
 export const CardGroup = styled.div`
   width: 100%;
   height: 20px;
