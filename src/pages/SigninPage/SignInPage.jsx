@@ -1,6 +1,6 @@
 import * as SI from "./SigninPage.styled";
-import "./SignIn.css";
-import { appRoutes } from "../../lib/appRoutes";
+import "./signin.css";
+
 
 export default function SigninPage() {
   return (
