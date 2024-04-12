@@ -4,8 +4,8 @@ import { useState } from "react";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import MainPage from "./pages/MainPage/MainPage";
-import SigninPage from "./pages/SigninPage/SignInPage";
-import SignupPage from "./pages/SignupPage/SignUpPage";
+import SigninPage from "./pages/SigninPage/SignnPage";
+import SignupPage from "./pages/SignupPage/SignpPage";
 
 export default function App() {
   const [user, setUser] = useState(false);
