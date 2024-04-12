@@ -1,10 +1,4 @@
 import { useEffect, useState } from "react";
-import PopUpExit from "../../components/popup/popexit/PopUpExit";
-import PopUpNewCard from "../../components/popup/popnewcard/PopUpNewCard";
-import PopUpBrowse from "../../components/popup/popbrowse/PopUpBrowse";
-import Header from "../../components/Header/Header";
-import MainContent from "../../components/MainContent/MainContent";
-import MainColumn from "../../components/MainColumn/MainColumn";
 
 const statusList = [
   "Без статуса",
@@ -65,4 +59,4 @@ function MainPage() {
   );
 }
 
-export default App;
+export default MainPage();
