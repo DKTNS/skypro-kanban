@@ -5,6 +5,7 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import MainPage from "./pages/MainPage/MainPage";
 import SigninPage from "./pages/SigninPage/SigninPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 export default function App() {
   const [user, setUser] = useState(false);
