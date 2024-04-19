@@ -117,7 +117,7 @@ export const SigninModalBtnEnter = styled.span`
     background-color: #33399b;
   }
 `;
-export const SigninModalFormGroup = styled.form`
+export const SigninModalFormGroup = styled.div`
   text-align: center;
   &p {
     color: rgba(148, 166, 190, 0.4);

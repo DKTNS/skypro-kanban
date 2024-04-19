@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { appRoutes } from "./lib/appRoutes";
 import { useState } from "react";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
@@ -12,24 +12,28 @@ import "./App.css";
 
 export default function App() {
   const [user, setUser] = useState(true);
-  function Login () {
+  const navigate = useNavigate();
+  function login () {
     setUser(true);
-    Navigate(appRoutes.MAIN);
+    navigate(appRoutes.MAIN);
   } 
-  function Logout(){
+  function logout(){
     setUser(false);
-    Navigate(appRoutes.SIGNIN);
+    navigate(appRoutes.SIGNIN);
   }
   return (
     <Routes>
       <Route element={<PrivateRoute user={user} />}>
         <Route path={appRoutes.MAIN} element={<MainPage />}>
           <Route path={appRoutes.TASK} element={<TaskPage />} />
-          <Route Login={Login} Logout={Logout} path={appRoutes.EXIT} element={<ExitPage />} />
+          <Route login={login} 
+          logout={logout} 
+          path={appRoutes.EXIT} 
+          element={<ExitPage />} />
         </Route>
       </Route>
-      <Route path={appRoutes.SIGNIN} element={<SigninPage Login={Login} />} />
-      <Route path={appRoutes.SIGNUP} element={<SignupPage Logout={Logout} />} />
+      <Route path={appRoutes.SIGNIN} element={<SigninPage login={login} />} />
+      <Route path={appRoutes.SIGNUP} element={<SignupPage logout={logout} />} />
       <Route path={appRoutes.NOTFOUND} element={<NotFoundPage />} />
     </Routes>
   );

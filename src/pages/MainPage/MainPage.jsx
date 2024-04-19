@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
+import { cardList } from "../../data";
+import Header from "../../components/Header/Header";
+import MainContent from "../../components/MainContent/MainContent";
+import MainColumn from "../../components/MainColumn/MainColumn";
 
 const statusList = [
   "Без статуса",

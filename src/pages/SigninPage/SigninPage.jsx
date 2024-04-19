@@ -1,9 +1,7 @@
 import * as SI from "./SigninPage.styled";
 import "./signin.css";
 
-
-
-export default function SigninPage({Login}) {
+export default function SigninPage({ login }) {
   return (
     <SI.WrapperSigninDiv>
       <SI.ContainerSigninDiv>
@@ -12,7 +10,8 @@ export default function SigninPage({Login}) {
             <SI.SigninModalTtl>
               <h2>Вход</h2>
             </SI.SigninModalTtl>
-            <SI.ModalFormLogin>
+
+            <SI.SigninModalFormLogin>
               <input
                 className="modal__input"
                 type="text"
@@ -28,14 +27,16 @@ export default function SigninPage({Login}) {
                 placeholder="Пароль"
               />
 
-              <SI.SigninModalBtnEnter onClick={Login}>Войти</SI.SigninModalBtnEnter>
+              <SI.SigninModalBtnEnter onClick={login}>
+                Войти
+              </SI.SigninModalBtnEnter>
 
               <SI.SigninModalFormGroup>
                 <p>Нужно зарегистрироваться?</p>
 
                 <span>Регистрируйтесь здесь</span>
               </SI.SigninModalFormGroup>
-            </SI.ModalFormLogin>
+            </SI.SigninModalFormLogin>
           </SI.SigninModalBlock>
         </SI.SigninModal>
       </SI.ContainerSigninDiv>
