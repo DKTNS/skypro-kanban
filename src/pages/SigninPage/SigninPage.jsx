@@ -2,7 +2,8 @@ import * as SI from "./SigninPage.styled";
 import "./signin.css";
 
 
-export default function SigninPage() {
+
+export default function SigninPage({Login}) {
   return (
     <SI.WrapperSigninDiv>
       <SI.ContainerSigninDiv>
@@ -27,7 +28,7 @@ export default function SigninPage() {
                 placeholder="Пароль"
               />
 
-              <SI.SigninModalBtnEnter>Войти</SI.SigninModalBtnEnter>
+              <SI.SigninModalBtnEnter onClick={Login}>Войти</SI.SigninModalBtnEnter>
 
               <SI.SigninModalFormGroup>
                 <p>Нужно зарегистрироваться?</p>

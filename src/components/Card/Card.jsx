@@ -1,7 +1,7 @@
 import * as CS from "./Card.styled.js";
-import { topicHeader ,topicStyles } from "../lib/topic.js";
+import { topicHeader} from "../lib/topic.js";
 
-export default function Card({ StatusTask, NameTask, date }) {
+export default function Card({ StatusTask, NameTask, date, id }) {
   return (
     <CS.CardItem>
       <CS.CardCard>
@@ -18,9 +18,9 @@ export default function Card({ StatusTask, NameTask, date }) {
           </a>
         </CS.CardGroup>
         <CS.CardContent>
-          <a href="" target="_blank">
+          <Link to={`task/${id}`}>
             <CS.CardTitle>{NameTask}</CS.CardTitle>
-          </a>
+          </Link>
           <CS.CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"

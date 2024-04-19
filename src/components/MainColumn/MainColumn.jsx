@@ -8,7 +8,12 @@ export default function MainColumn({ title, cardList }) {
         <p>{title}</p>
       </MCO.ColumnTitle>
       <MCO.MainColumnCards>
-        {cardList.map((card) => <Card StatusTask={card.theme} NameTask={card.title} date={card.date} key = {card.id} />)}
+        {cardList.map((card) => <Card 
+        StatusTask={card.theme} 
+        NameTask={card.title} 
+        date={card.date} 
+        key = {card.id} 
+        id= {card.id}/>)}
       </MCO.MainColumnCards>
     </MCO.MainColumn>
   );

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 
 const statusList = [
   "Без статуса",
@@ -8,7 +9,7 @@ const statusList = [
   "Готово",
 ];
 
-function MainPage() {
+export default function MainPage() {
   const [cards, setCards] = useState(cardList);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -34,9 +35,7 @@ function MainPage() {
         <h1></h1>
         {/*<!-- pop-up start-->*/}
 
-        <PopUpExit />
-        <PopUpNewCard />
-        <PopUpBrowse />
+        <Outlet />
         {/*<!-- pop-up end-->*/}
 
         <Header addCard={addCard} />
@@ -58,5 +57,3 @@ function MainPage() {
     </>
   );
 }
-
-export default MainPage();
