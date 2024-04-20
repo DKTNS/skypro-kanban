@@ -20,7 +20,7 @@ export default function Card({ StatusTask, NameTask, date, id }) {
         </CS.CardGroup>
         <CS.CardContent>
           <Link to={`task/${id}`}>
-            <CS.CardTitle>{NameTask}</CS.CardTitle>
+            {<CS.CardTitle>{NameTask}</CS.CardTitle>}
           </Link>
           <CS.CardDate>
             <svg

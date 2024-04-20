@@ -1,5 +1,5 @@
 import * as NF from "./NotFoundPage.styled";
-import "./style.css";
+/* import "./style.css"; */
 
 export default function NotFoundPage () {<NF.BodyNfp>
   <NF.ErrorContainer>

@@ -28,18 +28,6 @@ export const CardGroup = styled.div`
   justify-content: space-between;
 `;
 
-export const CardCard = styled.div`
-  width: 220px;
-  height: 130px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: stretch;
-  padding: 15px 13px 19px;
-`;
-
 export const CardItem = styled.div`
   padding: 5px;
   animation-name: card-animation;
@@ -74,6 +62,14 @@ export const CardContent = styled.div`
   align-items: flex-start;
   justify-content: space-between;
 `;
+export const LinkCardTitle = styled.span`
+  background-color: #d3d3d3;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 3px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+`;
 export const CardTitle = styled.div`
   font-size: 14px;
   font-weight: 500;
@@ -97,3 +93,27 @@ export const CardDate = styled.div`
     letter-spacing: 0.2px;
   }
 `;
+
+export const CardCard = styled.div`
+width: 220px;
+  height: 130px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: stretch;
+  padding: 15px 13px 19px;
+
+  @media screen and (max-width: 1200px) {
+  width: 220px;
+  height: 130px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: stretch;
+  padding: 15px 13px 19px;
+}
+;`
