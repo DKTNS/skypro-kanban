@@ -30,13 +30,17 @@ export default function Header({ addCard }, { user }) {
               </S.HeaderBtnMainNewText>
             </S.HeaderBtnMainNew>
 
-            <S.HeaderUser onClick={togglePopup}>Ivan Ivanov</S.HeaderUser>
+            <S.HeaderUser onClick={togglePopup} href="#user-set-target">
+              Ivan Ivanov
+            </S.HeaderUser>
 
             {isOpened && (
               <S.HeaderPopUserSet id="user-set-target">
                 {/*<!-- <a href="">x</a> -->*/}
-                <S.HeaderPopUserSetName>{user.name}</S.HeaderPopUserSetName>
-                <S.HeaderPopUserSetMail>{user.login}</S.HeaderPopUserSetMail>
+                <CS.HeaderPopUserSetName>Ivan Ivanov</CS.HeaderPopUserSetName>
+                <S.HeaderPopUserSetMail>
+                  ivan.ivanov@gmail.com
+                </S.HeaderPopUserSetMail>
                 <S.HeaderPopUserSetTheme>
                   <S.HeaderPopUserSetThemeP>
                     Темная тема

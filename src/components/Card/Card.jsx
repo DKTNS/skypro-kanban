@@ -1,6 +1,7 @@
 import * as CS from "./Card.styled.js";
 import { topicHeader } from "../lib/topic.js";
 import { Link } from "react-router-dom";
+import { appRoutes } from "../../lib/appRoutes";
 
 export default function Card({ StatusTask, NameTask, date, id }) {
   return (
@@ -10,13 +11,13 @@ export default function Card({ StatusTask, NameTask, date, id }) {
           <CS.CardTopic $themeColor={topicHeader[StatusTask]}>
             <CS.TopicText>{StatusTask}</CS.TopicText>
           </CS.CardTopic>
-          <a href="#popBrowse" target="_self">
+
             <CS.CardBtn>
-              <div></div>
-              <div></div>
-              <div></div>
+              <CS.CardBtnElement />
+              <CS.CardBtnElement />
+              <CS.CardBtnElement />
             </CS.CardBtn>
-          </a>
+
         </CS.CardGroup>
         <CS.CardContent>
           <Link to={`task/${id}`}>
@@ -51,7 +52,7 @@ export default function Card({ StatusTask, NameTask, date, id }) {
                 </clipPath>
               </defs>
             </svg>
-            <p>{date}</p>
+            <CS.CardDateValue>{date}</CS.CardDateValue>
           </CS.CardDate>
         </CS.CardContent>
       </CS.CardCard>

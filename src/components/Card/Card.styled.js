@@ -117,3 +117,17 @@ width: 220px;
   padding: 15px 13px 19px;
 }
 ;`
+export const CardDateValue = styled.p`
+margin-left: 6px;
+font-size: 10px;
+line-height: 13px;
+color: #94a6be;
+letter-spacing: 0.2px;
+`;
+
+export const CardBtnElement = styled.div`
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #94a6be;
+`;
