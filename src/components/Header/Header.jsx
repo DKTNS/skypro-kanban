@@ -4,7 +4,7 @@ import { Container } from "../../Styled/Common/Common.styled";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
 
-export default function Header({ addCard }) {
+export default function Header({ addCard }, { user }) {
   const [isOpened, setIsOpened] = useState(false);
   function togglePopup() {
     setIsOpened((prev) => !prev);
@@ -14,37 +14,42 @@ export default function Header({ addCard }) {
       <Container>
         <S.HeaderBlock>
           <S.HeaderLogoImg className="_show _light">
-          <a href="" target="_self">
+            <Link to={appRoutes.MAIN} target="_self">
               <img src="/images/logo.png" alt="logo" />
-            </a>
+            </Link>
           </S.HeaderLogoImg>
           <S.HeaderLogoImg className="_dark">
-          <a href="" target="_self">
+            <Link to={appRoutes.MAIN} target="_self">
               <img src="images/logo_dark.png" alt="logo" />
-            </a>
+            </Link>
           </S.HeaderLogoImg>
           <S.HeaderNav>
-              <S.HeaderBtnMainNew onClick={addCard} id="btnMainNew">
-                <S.HeaderBtnMainNewText>Создать новую задачу</S.HeaderBtnMainNewText>
-              </S.HeaderBtnMainNew>
+            <S.HeaderBtnMainNew onClick={addCard} id="btnMainNew">
+              <S.HeaderBtnMainNewText>
+                Создать новую задачу
+              </S.HeaderBtnMainNewText>
+            </S.HeaderBtnMainNew>
 
-            <S.HeaderUser onClick={togglePopup} >
-              Ivan Ivanov
-            </S.HeaderUser>
+            <S.HeaderUser onClick={togglePopup}>Ivan Ivanov</S.HeaderUser>
 
             {isOpened && (
               <S.HeaderPopUserSet id="user-set-target">
                 {/*<!-- <a href="">x</a> -->*/}
-                <S.HeaderPopUserSetName>Ivan Ivanov</S.HeaderPopUserSetName>
-                <S.HeaderPopUserSetMail>ivan.ivanov@gmail.com</S.HeaderPopUserSetMail>
+                <S.HeaderPopUserSetName>{user.name}</S.HeaderPopUserSetName>
+                <S.HeaderPopUserSetMail>{user.login}</S.HeaderPopUserSetMail>
                 <S.HeaderPopUserSetTheme>
-                  <S.HeaderPopUserSetThemeP>Темная тема</S.HeaderPopUserSetThemeP>
-                  <S.HeaderPopUserSetThemeInput type="checkbox" name="checkbox" />
+                  <S.HeaderPopUserSetThemeP>
+                    Темная тема
+                  </S.HeaderPopUserSetThemeP>
+                  <S.HeaderPopUserSetThemeInput
+                    type="checkbox"
+                    name="checkbox"
+                  />
                 </S.HeaderPopUserSetTheme>
                 <S.HeaderExitButton type="button">
-                <Link to={appRoutes.EXIT}>
-                <S.HeaderPopUserSetBtn>Выйти</S.HeaderPopUserSetBtn>
-                </Link>
+                  <Link to={appRoutes.EXIT}>
+                    <S.HeaderPopUserSetBtn>Выйти</S.HeaderPopUserSetBtn>
+                  </Link>
                 </S.HeaderExitButton>
               </S.HeaderPopUserSet>
             )}

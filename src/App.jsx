@@ -26,10 +26,8 @@ export default function App() {
       <Route element={<PrivateRoute user={user} />}>
         <Route path={appRoutes.MAIN} element={<MainPage />}>
           <Route path={appRoutes.TASK} element={<TaskPage />} />
-          <Route login={login} 
-          logout={logout} 
-          path={appRoutes.EXIT} 
-          element={<ExitPage />} />
+          <Route path={appRoutes.EXIT} element={<ExitPage logout={logout} />} />
+          {/* <Route path={appRoutes.NEW_CARD} element={<NewCardPage />} /> */}
         </Route>
       </Route>
       <Route path={appRoutes.SIGNIN} element={<SigninPage login={login} />} />

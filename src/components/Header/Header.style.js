@@ -88,7 +88,7 @@ export const HeaderUser = styled.div`
 `;
 
 export const HeaderPopUserSet = styled.div`
-.header__pop-user-set {
+
   display: none;
   position: absolute;
   top: 61px;
@@ -102,7 +102,7 @@ export const HeaderPopUserSet = styled.div`
   padding: 34px;
   text-align: center;
   z-index: 2;
-};`
+`
   
 export const HeaderPopUserSetName = styled.p`
     color: #000;
@@ -142,7 +142,7 @@ export const HeaderPopUserSetTheme = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 30px;
-  ::before {
+  :before {
  /*  content: ""; */
   position: absolute;
   top: 1px;
@@ -159,9 +159,9 @@ export const HeaderPopUserSetTheme = styled.div`
 `;
 
 export const HeaderExitButton = styled.span`
-a {
+
   color: #565EEF;
-}
+
 :hover {
   background-color:#565EEF;
   color: #FFFFFF;
