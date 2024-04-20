@@ -36,8 +36,8 @@ export default function Header({ addCard }, { user }) {
 
             {isOpened && (
               <S.HeaderPopUserSet id="user-set-target">
-                {/*<!-- <a href="">x</a> -->*/}
-                <CS.HeaderPopUserSetName>Ivan Ivanov</CS.HeaderPopUserSetName>
+                {/*<!-- <a href="">x</a> --> */}
+                <S.HeaderPopUserSetName>Ivan Ivanov</S.HeaderPopUserSetName>
                 <S.HeaderPopUserSetMail>
                   ivan.ivanov@gmail.com
                 </S.HeaderPopUserSetMail>

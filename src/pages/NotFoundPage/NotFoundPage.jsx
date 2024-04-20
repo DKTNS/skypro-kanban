@@ -1,6 +1,5 @@
 import { appRoutes } from "../../lib/appRoutes";
 import * as NF from "./NotFoundPage.styled";
-/* import "./style.css"; */
 
 export default function NotFoundPage() {
   return (
@@ -11,5 +10,5 @@ export default function NotFoundPage() {
         <Link to={appRoutes.MAIN}> Go Back to Home</Link>
       </NF.ErrorContainer>
     </NF.BodyNfp>
-  );
-}
+  )
+};

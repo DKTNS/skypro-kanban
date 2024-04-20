@@ -5,5 +5,4 @@ export const appRoutes = {
   SIGNUP: "/signup",
   EXIT: "/exit",
   NOTFOUND: "*",
-  CARD: "/Card",
 };
