@@ -85,7 +85,7 @@ export const HeaderUser = styled.div`
 `;
 
 export const HeaderPopUserSet = styled.div`
-  display: none;
+  /* display: none; */
   position: absolute;
   top: 61px;
   right: 0;
