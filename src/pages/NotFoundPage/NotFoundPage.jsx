@@ -1,4 +1,5 @@
 import { appRoutes } from "../../lib/appRoutes";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import * as NF from "./NotFoundPage.styled";
 
 export default function NotFoundPage() {
@@ -10,5 +11,5 @@ export default function NotFoundPage() {
         <Link to={appRoutes.MAIN}> Go Back to Home</Link>
       </NF.ErrorContainer>
     </NF.BodyNfp>
-  )
-};
+  );
+}

@@ -1,5 +1,5 @@
 import { appRoutes } from "../../lib/appRoutes";
-
-export default function SignupPage(){
-    return <div>Регистрация</div>
-};
+import { Routes, Route, useNavigate } from "react-router-dom";
+export default function SignupPage() {
+  return <div>Регистрация</div>;
+}

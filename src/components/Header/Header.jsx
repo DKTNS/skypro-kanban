@@ -3,6 +3,7 @@ import * as S from "./Header.style";
 import { Container } from "../../Styled/Common/Common.styled";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 export default function Header({ addCard }, { user }) {
   const [isOpened, setIsOpened] = useState(false);
