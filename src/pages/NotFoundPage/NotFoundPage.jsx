@@ -1,5 +1,5 @@
 import { appRoutes } from "../../lib/appRoutes";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as NF from "./NotFoundPage.styled";
 
 export default function NotFoundPage() {

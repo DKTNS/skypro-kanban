@@ -1,5 +1,5 @@
 import { appRoutes } from "../../lib/appRoutes";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { cardList } from "../../data";
