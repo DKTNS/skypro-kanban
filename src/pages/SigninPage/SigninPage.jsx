@@ -36,7 +36,7 @@ export default function SigninPage({ login }) {
               <SI.SigninModalFormGroup>
                 <p>Нужно зарегистрироваться?</p>
 
-                <span>Регистрируйтесь здесь</span>
+                <Link to={appRoutes.SIGNUP}>Регистрируйтесь здесь</Link>
               </SI.SigninModalFormGroup>
             </SI.SigninModalFormLogin>
           </SI.SigninModalBlock>
