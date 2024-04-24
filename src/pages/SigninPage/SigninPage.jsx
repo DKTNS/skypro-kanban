@@ -2,8 +2,22 @@ import { appRoutes } from "../../lib/appRoutes";
 import { Link } from "react-router-dom";
 import * as SI from "./SigninPage.styled";
 import "./signin.css";
+import { useState } from "react";
 
 export default function SigninPage({ login }) {
+  const [loginData, setLoginData] = useState({ login: "", password: "" });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target; // Извлекаем имя поля и его значение
+  
+    setFormData({
+      ...formData, // Копируем текущие данные из состояния
+      [name]: value, // Обновляем нужное поле
+    });
+  };
+const handleLogin= ( ) => {
+console.log(loginData);
+}
+
   return (
     <SI.WrapperSigninDiv>
       <SI.ContainerSigninDiv>
@@ -15,6 +29,8 @@ export default function SigninPage({ login }) {
 
             <SI.SigninModalFormLogin>
               <input
+              value={loginData.login}
+              onChange={handleInputChange}
                 className="modal__input"
                 type="text"
                 name="login"
@@ -22,6 +38,8 @@ export default function SigninPage({ login }) {
                 placeholder="Эл. почта"
               />
               <input
+                value={loginData.password}
+                onChange={handleInputChange}
                 className="modal__input"
                 type="password"
                 name="password"
@@ -29,7 +47,7 @@ export default function SigninPage({ login }) {
                 placeholder="Пароль"
               />
 
-              <SI.SigninModalBtnEnter onClick={login}>
+              <SI.SigninModalBtnEnter onClick={handleLogin}>
                 Войти
               </SI.SigninModalBtnEnter>
 

@@ -35,7 +35,8 @@ ul li {
     opacity: 1;
   }
 }
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   font-family: "Roboto", Arial, Helvetica, sans-serif;
@@ -47,7 +48,7 @@ html, body {
   width: 100vw;
   min-height: 100vh;
   overflow: hidden;
-  background-color: #F1F1F1;
+  background-color: #f1f1f1;
 }
 
 /* .container {
@@ -85,23 +86,23 @@ html, body {
 }
 
 ._orange {
-  background-color: #FFE4C2;
-  color: #FF6D00;
+  background-color: #ffe4c2;
+  color: #ff6d00;
 }
 
 ._green {
-  background-color: #B4FDD1;
-  color: #06B16E;
+  background-color: #b4fdd1;
+  color: #06b16e;
 }
 
 ._purple {
-  background-color: #E9D4FF;
-  color: #9A48F1;
+  background-color: #e9d4ff;
+  color: #9a48f1;
 }
 
 ._gray {
-  background: #94A6BE;
-  color: #FFFFFF;
+  background: #94a6be;
+  color: #ffffff;
 }
 
 ._active-category {
@@ -139,12 +140,12 @@ html, body {
 .pop-exit__block {
   display: block;
   margin: 0 auto;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   max-width: 370px;
   width: 100%;
   padding: 50px 60px;
   border-radius: 10px;
-  border: 0.7px solid #D4DBE5;
+  border: 0.7px solid #d4dbe5;
   box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
 }
 .pop-exit__ttl h2 {
@@ -158,7 +159,7 @@ html, body {
 .pop-exit__exit-yes {
   width: 153px;
   height: 30px;
-  background-color: #565EEF;
+  background-color: #565eef;
   border-radius: 4px;
   border: none;
   outline: none;
@@ -169,13 +170,13 @@ html, body {
   line-height: 21px;
   font-weight: 500;
   letter-spacing: -0.14px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-right: 10px;
 }
 .pop-exit__exit-yes a {
   width: 100%;
   height: 100%;
-  color: #FFFFFF;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,7 +186,7 @@ html, body {
   height: 30px;
   background-color: transparent;
   border-radius: 4px;
-  border: 0.7px solid var(--palette-navy-60, #565EEF);
+  border: 0.7px solid var(--palette-navy-60, #565eef);
   outline: none;
   display: flex;
   align-items: center;
@@ -194,12 +195,12 @@ html, body {
   line-height: 21px;
   font-weight: 500;
   letter-spacing: -0.14px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .pop-exit__exit-no a {
   width: 100%;
   height: 100%;
-  color: #565EEF;
+  color: #565eef;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -267,12 +268,12 @@ html, body {
   width: 72px;
   height: 30px;
   background: transparent;
-  color: #565EEF;
+  color: #565eef;
   border-radius: 4px;
-  border: 1px solid #565EEF;
+  border: 1px solid #565eef;
 }
 .pop-user-set button a {
-  color: #565EEF;
+  color: #565eef;
 }
 
 .pop-new-card {
@@ -300,12 +301,12 @@ html, body {
 .pop-new-card__block {
   display: block;
   margin: 0 auto;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   max-width: 630px;
   width: 100%;
   padding: 40px 30px 48px;
   border-radius: 10px;
-  border: 0.7px solid #D4DBE5;
+  border: 0.7px solid #d4dbe5;
   position: relative;
 }
 .pop-new-card__content {
@@ -323,7 +324,7 @@ html, body {
   position: absolute;
   top: 20px;
   right: 30px;
-  color: #94A6BE;
+  color: #94a6be;
   cursor: pointer;
 }
 .pop-new-card__close:hover {
@@ -345,7 +346,8 @@ html, body {
   display: flex;
   flex-direction: column;
 }
-.form-new__input, .form-new__area {
+.form-new__input,
+.form-new__area {
   width: 100%;
   outline: none;
   padding: 14px;
@@ -356,18 +358,20 @@ html, body {
   line-height: 1;
   letter-spacing: -0.14px;
 }
-.form-new__input::-moz-placeholder, .form-new__area::-moz-placeholder {
+.form-new__input::-moz-placeholder,
+.form-new__area::-moz-placeholder {
   font-weight: 400;
   font-size: 14px;
   line-height: 1px;
-  color: #94A6BE;
+  color: #94a6be;
   letter-spacing: -0.14px;
 }
-.form-new__input::placeholder, .form-new__area::placeholder {
+.form-new__input::placeholder,
+.form-new__area::placeholder {
   font-weight: 400;
   font-size: 14px;
   line-height: 1px;
-  color: #94A6BE;
+  color: #94a6be;
   letter-spacing: -0.14px;
 }
 .form-new__input {
@@ -381,14 +385,14 @@ html, body {
 .form-new__create {
   width: 132px;
   height: 30px;
-  background-color: #565EEF;
+  background-color: #565eef;
   border-radius: 4px;
   border: 0;
   outline: none;
   font-size: 14px;
   font-weight: 500;
   line-height: 1;
-  color: #FFFFFF;
+  color: #ffffff;
   float: right;
 }
 
@@ -408,7 +412,7 @@ html, body {
   padding: 0 7px;
 }
 .calendar__p {
-  color: #94A6BE;
+  color: #94a6be;
   font-size: 10px;
   line-height: 1;
 }
@@ -419,7 +423,7 @@ html, body {
   display: block;
 }
 .calendar__month {
-  color: #94A6BE;
+  color: #94a6be;
   font-size: 14px;
   line-height: 25px;
   font-weight: 600;
@@ -436,7 +440,7 @@ html, body {
   padding: 0 7px;
 }
 .calendar__day-name {
-  color: #94A6BE;
+  color: #94a6be;
   font-size: 10px;
   font-weight: 500;
   line-height: normal;
@@ -457,7 +461,7 @@ html, body {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  color: #94A6BE;
+  color: #94a6be;
   font-size: 10px;
   line-height: 1;
   letter-spacing: -0.2px;
@@ -489,7 +493,7 @@ html, body {
   justify-content: center;
 }
 .nav__action svg {
-  fill: #94A6BE;
+  fill: #94a6be;
 }
 
 ._other-month {
@@ -497,13 +501,13 @@ html, body {
 }
 
 ._cell-day:hover {
-  color: #94A6BE;
-  background-color: #EAEEF6;
+  color: #94a6be;
+  background-color: #eaeef6;
 }
 
 ._active-day {
-  background-color: #94A6BE;
-  color: #FFFFFF;
+  background-color: #94a6be;
+  color: #ffffff;
 }
 
 ._current {
@@ -539,7 +543,7 @@ html, body {
 }
 
 .pop-browse {
-  display: none;
+  /* display: none; */
   width: 100%;
   height: 100%;
   min-width: 375px;
@@ -563,12 +567,12 @@ html, body {
 .pop-browse__block {
   display: block;
   margin: 0 auto;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   max-width: 630px;
   width: 100%;
   padding: 40px 30px 38px;
   border-radius: 10px;
-  border: 0.7px solid #D4DBE5;
+  border: 0.7px solid #d4dbe5;
   position: relative;
 }
 .pop-browse__content {
@@ -608,18 +612,21 @@ html, body {
   display: block;
   margin-bottom: 20px;
 }
-.pop-browse__btn-browse, .pop-browse__btn-edit {
+.pop-browse__btn-browse,
+.pop-browse__btn-edit {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
 }
-.pop-browse__btn-browse button, .pop-browse__btn-edit button {
+.pop-browse__btn-browse button,
+.pop-browse__btn-edit button {
   height: 30px;
   margin-bottom: 10px;
   padding: 0 14px;
 }
-.pop-browse__btn-browse .btn-group button, .pop-browse__btn-edit .btn-group button {
+.pop-browse__btn-browse .btn-group button,
+.pop-browse__btn-edit .btn-group button {
   margin-right: 8px;
 }
 
@@ -632,7 +639,7 @@ html, body {
   width: 100%;
   outline: none;
   padding: 14px;
-  background: #EAEEF6;
+  background: #eaeef6;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   border-radius: 8px;
   font-size: 14px;
@@ -645,14 +652,14 @@ html, body {
   font-weight: 400;
   font-size: 14px;
   line-height: 1px;
-  color: #94A6BE;
+  color: #94a6be;
   letter-spacing: -0.14px;
 }
 .form-browse__area::placeholder {
   font-weight: 400;
   font-size: 14px;
   line-height: 1px;
-  color: #94A6BE;
+  color: #94a6be;
   letter-spacing: -0.14px;
 }
 
@@ -671,7 +678,7 @@ html, body {
 .status__theme {
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
-  color: #94A6BE;
+  color: #94a6be;
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
@@ -684,24 +691,24 @@ html, body {
 
 ._btn-bor {
   border-radius: 4px;
-  border: 0.7px solid var(--palette-navy-60, #565EEF);
+  border: 0.7px solid var(--palette-navy-60, #565eef);
   outline: none;
   background: transparent;
-  color: #565EEF;
+  color: #565eef;
 }
 ._btn-bor a {
-  color: #565EEF;
+  color: #565eef;
 }
 
 ._btn-bg {
   border-radius: 4px;
-  background: #565EEF;
+  background: #565eef;
   border: none;
   outline: none;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 ._btn-bg a {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 ._hide {
@@ -726,7 +733,7 @@ html, body {
     margin: 0 auto;
     display: block;
   }
-/*   .cards {
+  /*   .cards {
     width: 100%;
     display: flex;
     overflow-y: auto;
@@ -761,7 +768,9 @@ html, body {
     max-width: 340px;
     width: 100%;
   }
-  .calendar__ttl, .calendar__nav, .calendar__period {
+  .calendar__ttl,
+  .calendar__nav,
+  .calendar__period {
     padding: 0;
   }
   .calendar .date-create {
@@ -855,14 +864,17 @@ html, body {
   .pop-browse__calendar {
     width: 100%;
   }
-  .pop-browse__btn-browse button, .pop-browse__btn-edit button {
+  .pop-browse__btn-browse button,
+  .pop-browse__btn-edit button {
     width: 100%;
     height: 40px;
   }
-  .pop-browse__btn-browse .btn-group, .pop-browse__btn-edit .btn-group {
+  .pop-browse__btn-browse .btn-group,
+  .pop-browse__btn-edit .btn-group {
     width: 100%;
   }
-  .pop-browse__btn-browse .btn-group button, .pop-browse__btn-edit .btn-group button {
+  .pop-browse__btn-browse .btn-group button,
+  .pop-browse__btn-edit .btn-group button {
     margin-right: 0px;
   }
   .form-browse__area {
