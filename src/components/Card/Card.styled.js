@@ -18,7 +18,7 @@ export const CardTopic = styled.div`
     color: ${({ $themeColor }) => topicStyles[$themeColor]?.color || "#FFFFFF"};
   }
 `;
-
+//
 export const CardGroup = styled.div`
   width: 100%;
   height: 20px;
@@ -26,18 +26,6 @@ export const CardGroup = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`;
-
-export const CardCard = styled.div`
-  width: 220px;
-  height: 130px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: stretch;
-  padding: 15px 13px 19px;
 `;
 
 export const CardItem = styled.div`
@@ -74,6 +62,14 @@ export const CardContent = styled.div`
   align-items: flex-start;
   justify-content: space-between;
 `;
+export const LinkCardTitle = styled.span`
+  background-color: #d3d3d3;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 3px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+`;
 export const CardTitle = styled.div`
   font-size: 14px;
   font-weight: 500;
@@ -96,4 +92,42 @@ export const CardDate = styled.div`
     color: #94a6be;
     letter-spacing: 0.2px;
   }
+`;
+
+export const CardCard = styled.div`
+width: 220px;
+  height: 130px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: stretch;
+  padding: 15px 13px 19px;
+
+  @media screen and (max-width: 1200px) {
+  width: 220px;
+  height: 130px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: stretch;
+  padding: 15px 13px 19px;
+}
+;`
+export const CardDateValue = styled.p`
+margin-left: 6px;
+font-size: 10px;
+line-height: 13px;
+color: #94a6be;
+letter-spacing: 0.2px;
+`;
+
+export const CardBtnElement = styled.div`
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #94a6be;
 `;
