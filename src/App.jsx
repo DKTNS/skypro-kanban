@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate, Link } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { appRoutes } from "./lib/appRoutes";
 import { useState } from "react";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
@@ -19,7 +19,7 @@ export default function App() {
   }
   function logout() {
     setUser(null);
-    /* navigate(appRoutes.SIGNIN); */
+    navigate(appRoutes.SIGNIN);
   }
   return (
     <Routes>
@@ -27,7 +27,7 @@ export default function App() {
         <Route path={appRoutes.MAIN} element={<MainPage user={user} />}>
           <Route path={appRoutes.TASK} element={<TaskPage />} />
           <Route path={appRoutes.EXIT} element={<ExitPage logout={logout} />} />
-          {/* <Route path={appRoutes.NEW_CARD} element={<NewCardPage />} /> */}
+          {/* <Route path={appRoutes.NEWTASK} element={<NewCardPage />} /> */}
         </Route>
       </Route>
       <Route path={appRoutes.SIGNIN} element={<SigninPage login={login} />} />
