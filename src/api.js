@@ -84,7 +84,7 @@ export async function getUserList(){
 }
 
 //Регистрация
-export function signUp(login, name, password){
+export function signUp({login, name, password}){
     return fetch(userHost, {
         method: "POST",
         body: JSON.stringify({
