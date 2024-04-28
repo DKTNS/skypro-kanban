@@ -101,7 +101,7 @@ export function signUp(login, name, password){
 }
 
 //Авторизация
-export function signIn(login, password){
+export function signIn({login, password}){
     return fetch(userHost + "/login", {
         method: "POST",
         body: JSON.stringify({
