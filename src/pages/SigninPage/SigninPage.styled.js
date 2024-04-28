@@ -53,7 +53,7 @@ export const SigninModalTtl = styled.div`
   margin-bottom: 20px;
 `;
 
-export const SigninModalFormLogin = styled.form`
+export const SigninModalFormLogin = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;

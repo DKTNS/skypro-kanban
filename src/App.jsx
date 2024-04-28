@@ -11,15 +11,15 @@ import TaskPage from "./pages/TaskPage/TaskPage";
 import "./App.css";
 
 export default function App() {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
-  function login () {
-    setUser(true);
+  function login(newUser) {
+    setUser(newUser);
     navigate(appRoutes.MAIN);
-  } 
-  function logout(){
-    setUser(false);
-    navigate(appRoutes.SIGNIN);
+  }
+  function logout() {
+    setUser(null);
+    /* navigate(appRoutes.SIGNIN); */
   }
   return (
     <Routes>

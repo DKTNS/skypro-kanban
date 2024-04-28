@@ -3,20 +3,26 @@ import { Link } from "react-router-dom";
 import * as SI from "./SigninPage.styled";
 import "./signin.css";
 import { useState } from "react";
+import { signIn } from "../../api";
 
 export default function SigninPage({ login }) {
   const [loginData, setLoginData] = useState({ login: "", password: "" });
   const handleInputChange = (e) => {
     const { name, value } = e.target; // Извлекаем имя поля и его значение
-  
+
     setLoginData({
       ...loginData, // Копируем текущие данные из состояния
       [name]: value, // Обновляем нужное поле
     });
   };
-const handleLogin= ( ) => {
-console.log(loginData);
-}
+  const handleLogin = async() => {
+    await signIn(loginData).then((data)=>{
+      login(data.user);
+      navigate(appRoutes.MAIN);
+    }).catch((error) => {
+      alert(error.message + ": попробуйте повторить запрос");
+    });
+  };
 
   return (
     <SI.WrapperSigninDiv>
@@ -29,8 +35,8 @@ console.log(loginData);
 
             <SI.SigninModalFormLogin>
               <input
-              value={loginData.login}
-              onChange={handleInputChange}
+                value={loginData.login}
+                onChange={handleInputChange}
                 className="modal__input"
                 type="text"
                 name="login"
