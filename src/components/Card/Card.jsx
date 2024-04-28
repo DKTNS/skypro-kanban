@@ -2,7 +2,7 @@ import * as CS from "./Card.styled.js";
 import { topicHeader } from "../lib/topic.js";
 import { Link } from "react-router-dom";
 
-export default function card({ StatusTask, NameTask, date, id }) {
+export default function Сard({ StatusTask, NameTask, date, id }) {
   return (
     <CS.CardItem>
       <CS.CardCard>
