@@ -1,9 +1,8 @@
 import * as CS from "./Card.styled.js";
 import { topicHeader } from "../lib/topic.js";
 import { Link } from "react-router-dom";
-import { appRoutes } from "../../lib/appRoutes";
 
-export default function Card({ StatusTask, NameTask, date, id }) {
+export default function card({ StatusTask, NameTask, date, id }) {
   return (
     <CS.CardItem>
       <CS.CardCard>
@@ -12,12 +11,11 @@ export default function Card({ StatusTask, NameTask, date, id }) {
             <CS.TopicText>{StatusTask}</CS.TopicText>
           </CS.CardTopic>
 
-            <CS.CardBtn>
-              <CS.CardBtnElement />
-              <CS.CardBtnElement />
-              <CS.CardBtnElement />
-            </CS.CardBtn>
-
+          <CS.CardBtn>
+            <CS.CardBtnElement />
+            <CS.CardBtnElement />
+            <CS.CardBtnElement />
+          </CS.CardBtn>
         </CS.CardGroup>
         <CS.CardContent>
           <Link to={`task/${id}`}>

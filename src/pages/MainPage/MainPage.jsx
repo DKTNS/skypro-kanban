@@ -1,11 +1,9 @@
-import { appRoutes } from "../../lib/appRoutes";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { cardList } from "../../data";
 import Header from "../../components/Header/Header";
 import MainContent from "../../components/MainContent/MainContent";
 import MainColumn from "../../components/MainColumn/MainColumn";
+import { getTodos } from "../../api";
 
 const statusList = [
   "Без статуса",
@@ -15,14 +13,17 @@ const statusList = [
   "Готово",
 ];
 
-export default function MainPage() {
-  const [cards, setCards] = useState(cardList);
+export default function MainPage({ user }) {
+  const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    setTimeout(() => {
+    getTodos({ token: user.token }).then((todos) => {
+      console.log(todos);
+      setCards(todos.tasks);
       setIsLoading(false);
-    }, 2000); // 2 секунды задержки
-  }, []); // Пустой массив зависимостей для запуска только при монтировании компонента
+    }, 1000); // 2 секунды задержки (изменил на 1 секунду)
+  }, [user.token]); // Пустой массив зависимостей для запуска только при монтировании компонента
 
   function addCard() {
     //добавление карточки
