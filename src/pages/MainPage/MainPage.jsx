@@ -22,7 +22,9 @@ export default function MainPage({ user }) {
       console.log(todos);
       setCards(todos.tasks);
       setIsLoading(false);
-    }, 1000); // 2 секунды задержки (изменил на 1 секунду)
+    }, 1000).catch(() => {
+      aler (error);
+    }); // 2 секунды задержки (изменил на 1 секунду)
   }, [user.token]); // Пустой массив зависимостей для запуска только при монтировании компонента
 
   function addCard() {
