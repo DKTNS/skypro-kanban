@@ -44,7 +44,7 @@ export default function SignupPage() {
                 className="modal__input first-name"
                 type="text"
                 onChange={handleInputChange}
-                name="first-name"
+                name="name"
                 id="first-name"
                 value={regData.name}
                 placeholder="Имя"
