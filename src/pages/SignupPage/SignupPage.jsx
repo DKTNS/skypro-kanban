@@ -7,7 +7,7 @@ import { useUser } from "../../components/Hooks/useUser";
 export default function SignupPage() {
   const { login } = useUser();
   const navigate = useNavigate();
-  const [data, setData] = useState({
+  const [regData, setRegData] = useState({
     login: "",
     name: "",
     password: "",
@@ -22,7 +22,7 @@ export default function SignupPage() {
   };
   const handleRegister = async (e) => {
     e.preventDefault();
-    await signUp(data)
+    await signUp(regData)
       .then((data) => {
         login(data.user);
         navigate(appRoutes.MAIN);
