@@ -69,7 +69,7 @@ export async function deleteTodos() {
   return data;
 }
 
-//return task list
+//return user list
 export async function getUserList() {
   const response = await fetch(userHost, {
     headers: {
