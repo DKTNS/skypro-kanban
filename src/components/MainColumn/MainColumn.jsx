@@ -11,7 +11,7 @@ export default function MainColumn({ title, cardList }) {
         {cardList.map((card) => (
           <Card
             topic={card.topic}
-            NameTask={card.title}
+            title={card.title}
             date={card.date}
             key={card._id}
             id={card._id}
