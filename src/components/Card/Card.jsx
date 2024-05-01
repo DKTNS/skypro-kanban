@@ -1,27 +1,25 @@
 import * as CS from "./Card.styled.js";
 import { topicHeader } from "../lib/topic.js";
 import { Link } from "react-router-dom";
-import { appRoutes } from "../../lib/appRoutes";
 
-export default function Card({ StatusTask, NameTask, date, id }) {
+export default function Сard({ topic, title, date, _id }) {
   return (
     <CS.CardItem>
       <CS.CardCard>
         <CS.CardGroup>
-          <CS.CardTopic $themeColor={topicHeader[StatusTask]}>
-            <CS.TopicText>{StatusTask}</CS.TopicText>
+          <CS.CardTopic $themeColor={topicHeader[topic]}>
+            <CS.TopicText>{topic}</CS.TopicText>
           </CS.CardTopic>
 
-            <CS.CardBtn>
-              <CS.CardBtnElement />
-              <CS.CardBtnElement />
-              <CS.CardBtnElement />
-            </CS.CardBtn>
-
+          <CS.CardBtn>
+            <CS.CardBtnElement />
+            <CS.CardBtnElement />
+            <CS.CardBtnElement />
+          </CS.CardBtn>
         </CS.CardGroup>
         <CS.CardContent>
-          <Link to={`task/${id}`}>
-            {<CS.CardTitle>{NameTask}</CS.CardTitle>}
+          <Link to={`task/${_id}`}>
+            {<CS.CardTitle>{title}</CS.CardTitle>}
           </Link>
           <CS.CardDate>
             <svg

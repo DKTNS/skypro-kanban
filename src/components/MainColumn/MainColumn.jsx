@@ -10,11 +10,11 @@ export default function MainColumn({ title, cardList }) {
       <MCO.MainColumnCards>
         {cardList.map((card) => (
           <Card
-            StatusTask={card.theme}
-            NameTask={card.title}
+            topic={card.topic}
+            title={card.title}
             date={card.date}
-            key={card.id}
-            id={card.id}
+            key={card._id}
+            id={card._id}
           />
         ))}
       </MCO.MainColumnCards>
