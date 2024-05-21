@@ -4,8 +4,10 @@ import * as SI from "./SigninPage.styled";
 import "./signin.css";
 import { useState } from "react";
 import { signIn } from "../../api";
+import { useUser } from "../../components/Hooks/useUser";
 
-export default function SigninPage({ login }) {
+export default function SigninPage() {
+  const {login} = useUser();
   const [loginData, setLoginData] = useState({ login: "", password: "" });
   const handleInputChange = (e) => {
     const { name, value } = e.target; // Извлекаем имя поля и его значение

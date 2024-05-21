@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import MainContent from "../../components/MainContent/MainContent";
 import MainColumn from "../../components/MainColumn/MainColumn";
 import { getTodos } from "../../api";
+import { useUser } from "../../components/Hooks/useUser";
 
 const statusList = [
   "Без статуса",
@@ -13,9 +14,10 @@ const statusList = [
   "Готово",
 ];
 
-export default function MainPage({ user }) {
+export default function MainPage() {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const {user} = useUser()
 
   useEffect(() => {
     getTodos({ token: user.token }).then((todos) => {
