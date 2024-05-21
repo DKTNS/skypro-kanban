@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../components/Hooks/useUser";
-//import PopUpExit from "../../components/popup/popexit/PopUpExit";
 import * as EP from "./ExitPage.styled";
 
 export default function ExitPage() {

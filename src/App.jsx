@@ -1,6 +1,5 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { appRoutes } from "./lib/appRoutes";
-//import { useState } from "react";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import MainPage from "./pages/MainPage/MainPage";
@@ -11,16 +10,7 @@ import TaskPage from "./pages/TaskPage/TaskPage";
 import "./App.css";
 
 export default function App() {
-  /*const [user, setUser] = useState(null);
-  const navigate = useNavigate();
-  function login(newUser) {
-    setUser(newUser);
-    navigate(appRoutes.MAIN);
-  }
-  function logout() {
-    setUser(null);
-    navigate(appRoutes.SIGNIN);
-  } */
+
   return (
     <Routes>
       <Route element={<PrivateRoute />}>

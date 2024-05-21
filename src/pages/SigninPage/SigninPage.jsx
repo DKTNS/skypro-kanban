@@ -21,7 +21,6 @@ export default function SigninPage() {
     await signIn(loginData)
       .then((data) => {
         login(data.user);
-        /* navigate(appRoutes.MAIN); вызавало ошибку 400 на входе даже при отсутствии логина пароля*/
       })
       .catch((error) => {
         alert(error.message + ": попробуйте повторить запрос");
