@@ -1,5 +1,5 @@
 import { appRoutes } from "../../lib/appRoutes";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as SI from "./SigninPage.styled";
 import "./signin.css";
 import { useState } from "react";
@@ -8,6 +8,7 @@ import { useUser } from "../../components/Hooks/useUser";
 
 export default function SigninPage() {
   const {login} = useUser();
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState({ login: "", password: "" });
   const handleInputChange = (e) => {
     const { name, value } = e.target; // Извлекаем имя поля и его значение
@@ -21,10 +22,11 @@ export default function SigninPage() {
     await signIn(loginData)
       .then((data) => {
         login(data.user);
+        navigate(appRoutes.MAIN);
       })
-      .catch((error) => {
+/*       .catch((error) => {
         alert(error.message + ": попробуйте повторить запрос");
-      });
+      }); */
   };
 
   return (

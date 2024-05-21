@@ -3,6 +3,7 @@ import { signUp } from "../../api";
 import { appRoutes } from "../../lib/appRoutes";
 import { useNavigate, Link } from "react-router-dom";
 import { useUser } from "../../components/Hooks/useUser";
+import * as SUP from "./SignupPage.styled"
 
 export default function SignupPage() {
   const { login } = useUser();
@@ -32,16 +33,15 @@ export default function SignupPage() {
       });
   };
   return (
-    <div>
-      <div className="container-signup">
-        <div className="modal">
-          <div className="modal__block">
-            <div className="modal__ttl">
+    <SUP.WrapperSignupDiv>
+      <SUP.ContainerSignup>
+        <SUP.SignupModal>
+          <SUP.SignupModalBlock>
+            <SUP.SignupModalTtl>
               <h2>Регистрация</h2>
-            </div>
-            <form className="modal__form-login" id="formLogUp" action="#">
-              <input
-                className="modal__input first-name"
+            </SUP.SignupModalTtl>
+            <SUP.SignupModalFormLogin id="formLogUp" action="#">
+              <SUP.SignupModalInput
                 type="text"
                 onChange={handleInputChange}
                 name="name"
@@ -49,8 +49,7 @@ export default function SignupPage() {
                 value={regData.name}
                 placeholder="Имя"
               />
-              <input
-                className="modal__input login"
+              <SUP.SignupModalInput
                 type="text"
                 onChange={handleInputChange}
                 name="login"
@@ -58,8 +57,7 @@ export default function SignupPage() {
                 value={regData.login}
                 placeholder="Эл. почта"
               />
-              <input
-                className="modal__input password-first"
+              <SUP.SignupModalInput
                 type="password"
                 onChange={handleInputChange}
                 name="password"
@@ -67,23 +65,22 @@ export default function SignupPage() {
                 id="passwordFirst"
                 placeholder="Пароль"
               />
-              <button
+              <SUP.SignupModalBtnEnter
                 onClick={handleRegister}
-                className="modal__btn-signup-ent _hover01"
                 id="SignUpEnter"
               >
-                <a href="../main.html">Зарегистрироваться</a>{" "}
-              </button>
-              <div className="modal__form-group">
+                <Link href="../main.html">Зарегистрироваться</Link>{" "}
+              </SUP.SignupModalBtnEnter>
+              <SUP.SignupModalFormGroup>
                 <p>
                   Уже есть аккаунт?{" "}
                   <Link to={appRoutes.SIGNIN}>Войдите здесь</Link>
                 </p>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+              </SUP.SignupModalFormGroup>
+            </SUP.SignupModalFormLogin>
+          </SUP.SignupModalBlock>
+        </SUP.SignupModal>
+      </SUP.ContainerSignup>
+    </SUP.WrapperSignupDiv>
   );
 }
