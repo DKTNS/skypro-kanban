@@ -65,16 +65,13 @@ export default function SignupPage() {
                 id="passwordFirst"
                 placeholder="Пароль"
               />
-              <SUP.SignupModalBtnEnter
-                onClick={handleRegister}
-                id="SignUpEnter"
-              >
-                <Link href="../main.html">Зарегистрироваться</Link>{" "}
+              <SUP.SignupModalBtnEnter onClick={handleRegister}>
+                Зарегистрироваться{" "}
               </SUP.SignupModalBtnEnter>
               <SUP.SignupModalFormGroup>
                 <p>
                   Уже есть аккаунт?{" "}
-                  <Link to={appRoutes.SIGNIN}>Войдите здесь</Link>
+                  <Link to={appRoutes.SIGNIN}><span>Войдите здесь</span></Link>
                 </p>
               </SUP.SignupModalFormGroup>
             </SUP.SignupModalFormLogin>

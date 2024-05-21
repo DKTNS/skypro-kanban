@@ -106,16 +106,19 @@ export const SignupModalBtnEnter = styled.span`
   font-weight: 500;
   letter-spacing: -0.14px;
   color: #ffffff;
+
   &a {
     width: 100%;
     height: 100%;
     color: #ffffff;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   &:hover {
     background-color: #33399b;
+
   }
 `;
 

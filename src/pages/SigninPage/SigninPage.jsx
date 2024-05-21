@@ -39,19 +39,17 @@ export default function SigninPage() {
             </SI.SigninModalTtl>
 
             <SI.SigninModalFormLogin>
-              <input
+              <SI.SigninModalInput
                 value={loginData.login}
                 onChange={handleInputChange}
-                className="modal__input"
                 type="text"
                 name="login"
                 id="formlogin"
                 placeholder="Эл. почта"
               />
-              <input
+              <SI.SigninModalInput
                 value={loginData.password}
                 onChange={handleInputChange}
-                className="modal__input"
                 type="password"
                 name="password"
                 id="formpassword"
