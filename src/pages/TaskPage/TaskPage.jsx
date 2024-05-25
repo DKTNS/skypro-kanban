@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import {Calendar} from "../../components/Calendar/Calendar.jsx";
 import * as TP from "./TaskPage.styled.js";
 import { useState } from "react";
+import { postTodos } from "../../api";
 
 export default function TaskPage() {
-  /*   const { user } = useUser();
+    const { user } = useUser();
   const { putDownTask } = useTask();
-  const navigate = useNavigate(); */
+  const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
   const [newTask, setNewTask] = useState({
     title: "",
@@ -21,6 +22,10 @@ export default function TaskPage() {
       date: selectedDate,
     };
     console.log(taskData);
+    await postTodo({
+      task: taskData,
+      token: user.token,
+    });
   };
   const handleInputChange = (e) => {
     const { name, value } = e.target; // Извлекаем имя поля и его значение
@@ -29,6 +34,18 @@ export default function TaskPage() {
       ...newTask, // Копируем текущие данные из состояния
       [name]: value, // Обновляем нужное поле
     });
+  };
+  const handleTask = async (taskData) => {
+    e.preventDefault();
+    await postTodo(taskData).then((data) => {
+      console.log(data);
+      putDownTask(data.task);
+      navigate(appRoutes.MAIN);
+    });
+  };
+  const addTaskBtn = (taskData) => {
+    handleFormSubmit(taskData);
+    handleTask(taskData);
   };
   return (
     <TP.PopNewCard id="popNewCard">
@@ -108,7 +125,7 @@ export default function TaskPage() {
             </TP.CopywritingLabel>
           </TP.CategoriesThemes>
           <TP.ButtonDiv>
-            <TP.FormNewCreatButton onClick={handleFormSubmit} id="btnCreate">
+            <TP.FormNewCreatButton onClick={addTaskBtn} id="btnCreate">
               Создать задачу
             </TP.FormNewCreatButton>
           </TP.ButtonDiv>

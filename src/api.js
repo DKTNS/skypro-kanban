@@ -16,15 +16,13 @@ export async function getTodos({ token }) {
 }
 
 //Добавление задачи
-export async function postTodos(text) {
+export async function postTodos(task, token) {
   const response = await fetch(baseHost, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
     method: "POST",
-    body: JSON.stringify({
-      text,
-    }),
+    body: JSON.stringify(task),
   });
   if (!response.status === 201) {
     throw new Error("Ошибка");
