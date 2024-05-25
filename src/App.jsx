@@ -17,7 +17,7 @@ export default function App() {
         <Route path={appRoutes.MAIN} element={<MainPage />}>
           <Route path={appRoutes.TASK} element={<TaskPage />} />
           <Route path={appRoutes.EXIT} element={<ExitPage />} />
-          {/* <Route path={appRoutes.NEWTASK} element={<NewCardPage />} /> */}
+
         </Route>
       </Route>
       <Route path={appRoutes.SIGNIN} element={<SigninPage />} />

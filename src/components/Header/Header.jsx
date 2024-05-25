@@ -24,12 +24,13 @@ export default function Header({ addCard }, { user }) {
             </Link>
           </S.HeaderLogoImg>
           <S.HeaderNav>
-            <S.HeaderBtnMainNew onClick={addCard} id="btnMainNew">
-              <S.HeaderBtnMainNewText>
+            <Link to={appRoutes.TASK}>
+            <S.HeaderBtnMainNew /* onClick={addCard} */ id="btnMainNew">
+              {/* <S.HeaderBtnMainNewText> */}
                 Создать новую задачу
-              </S.HeaderBtnMainNewText>
+              {/* </S.HeaderBtnMainNewText> */}
             </S.HeaderBtnMainNew>
-
+            </Link>
             <S.HeaderUser onClick={togglePopup} href="#user-set-target">
               Ivan Ivanov
             </S.HeaderUser>

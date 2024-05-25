@@ -10,6 +10,7 @@ export default function SigninPage() {
   const {login} = useUser();
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({ login: "", password: "" });
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target; // Извлекаем имя поля и его значение
 
