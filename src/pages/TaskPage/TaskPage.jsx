@@ -1,6 +1,6 @@
 //import PopUpBrowse from "../../components/popup/popbrowse/PopUpBrowse";
 import { Link } from "react-router-dom";
-import Calendar from "../../components/Calendar/Calendar.jsx";
+import {Calendar} from "../../components/Calendar/Calendar.jsx";
 import * as TP from "./TaskPage.styled.js";
 import { useState } from "react";
 

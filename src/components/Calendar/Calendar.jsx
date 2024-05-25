@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { DayPicker } from "react-day-picker";
-import "react-day-picker/style.css";
+//import "react-day-picker/style.css";
 import ru from "date-fns/locale/ru";
 
 export function Calendar({ selectedDate, setSelectedDate }) {
