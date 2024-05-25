@@ -10,7 +10,6 @@ import { useTasks } from "../../components/Hooks/useTasks.js";
 
 export default function TaskPage() {
     const { user } = useUser();
-  const { putDownTask } = useTasks();
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
   const [newTask, setNewTask] = useState({
@@ -32,7 +31,6 @@ export default function TaskPage() {
   };
   const handleInputChange = (e) => {
     const { name, value } = e.target; // Извлекаем имя поля и его значение
-
     setNewTask({
       ...newTask, // Копируем текущие данные из состояния
       [name]: value, // Обновляем нужное поле
@@ -40,9 +38,8 @@ export default function TaskPage() {
   };
   const handleTask = async (taskData) => {
     e.preventDefault();
-    await postTodo(taskData).then((data) => {
+    await postTodos(taskData).then((data) => {
       console.log(data);
-      putDownTask(data.task);
       navigate(appRoutes.MAIN);
     });
   };
