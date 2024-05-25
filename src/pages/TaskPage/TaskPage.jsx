@@ -1,13 +1,16 @@
 //import PopUpBrowse from "../../components/popup/popbrowse/PopUpBrowse";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {Calendar} from "../../components/Calendar/Calendar.jsx";
 import * as TP from "./TaskPage.styled.js";
 import { useState } from "react";
 import { postTodos } from "../../api";
+import { appRoutes } from "../../lib/appRoutes";
+import { useUser } from "../../components/Hooks/useUser.js";
+import { useTasks } from "../../components/Hooks/useTasks.js";
 
 export default function TaskPage() {
     const { user } = useUser();
-  const { putDownTask } = useTask();
+  const { putDownTask } = useTasks();
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
   const [newTask, setNewTask] = useState({
@@ -15,14 +18,14 @@ export default function TaskPage() {
     description: "",
     topic: "",
   });
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     const taskData = {
       ...newTask,
       date: selectedDate,
     };
     console.log(taskData);
-    await postTodo({
+    await postTodos({
       task: taskData,
       token: user.token,
     });
