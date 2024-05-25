@@ -1,14 +1,13 @@
 //import PopUpBrowse from "../../components/popup/popbrowse/PopUpBrowse";
 import { Link } from "react-router-dom";
-import Calendar from "../../components/Calendar/Calendar";
-import * as TP from "./TaskPage.styled";
+import Calendar from "../../components/Calendar/Calendar.jsx";
+import * as TP from "./TaskPage.styled.js";
 import { useState } from "react";
 
-
 export default function TaskPage() {
-  const { user } = useUser();
+  /*   const { user } = useUser();
   const { putDownTask } = useTask();
-  const navigate = useNavigate();
+  const navigate = useNavigate(); */
   const [selectedDate, setSelectedDate] = useState(null);
   const [newTask, setNewTask] = useState({
     title: "",
@@ -16,12 +15,13 @@ export default function TaskPage() {
     topic: "",
   });
   const handleFormSubmit = (e) => {
-e.preventDefault();
-const taskData = {
-  ...newTask, date:selectedDate,
-}
-console.log(taskData);
-  }
+    e.preventDefault();
+    const taskData = {
+      ...newTask,
+      date: selectedDate,
+    };
+    console.log(taskData);
+  };
   const handleInputChange = (e) => {
     const { name, value } = e.target; // Извлекаем имя поля и его значение
 
@@ -103,7 +103,9 @@ console.log(taskData);
               value="Copywriting"
               onChange={handleInputChange}
             />
-            <TP.CopywritingLabel htmlFor="radio3">Copywriting</TP.CopywritingLabel>
+            <TP.CopywritingLabel htmlFor="radio3">
+              Copywriting
+            </TP.CopywritingLabel>
           </TP.CategoriesThemes>
           <TP.ButtonDiv>
             <TP.FormNewCreatButton onClick={handleFormSubmit} id="btnCreate">
