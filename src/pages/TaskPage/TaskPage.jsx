@@ -1,6 +1,6 @@
 //import PopUpBrowse from "../../components/popup/popbrowse/PopUpBrowse";
 import { Link, useNavigate } from "react-router-dom";
-import {Calendar} from "../../components/Calendar/Calendar.jsx";
+import { Calendar } from "../../components/Calendar/Calendar.jsx";
 import * as TP from "./TaskPage.styled.js";
 import { useState } from "react";
 import { postTodos } from "../../api";
@@ -9,7 +9,7 @@ import { useUser } from "../../components/Hooks/useUser.js";
 import { useTasks } from "../../components/Hooks/useTasks.js";
 
 export default function TaskPage() {
-    const { user } = useUser();
+  const { user } = useUser();
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
   const [newTask, setNewTask] = useState({
@@ -36,9 +36,12 @@ export default function TaskPage() {
       [name]: value, // Обновляем нужное поле
     });
   };
-  const handleTask = async (taskData) => {
-    e.preventDefault();
-    await postTodos(taskData).then((data) => {
+  const handleTask = async ({taskData,token}) => {
+    //e.preventDefault(); //из-за сброса в начальное состояние почему то не закрывалось окно календаря.
+    await postTodos({
+      task: taskData,
+      token: user.token,
+    }).then((data) => {
       console.log(data);
       navigate(appRoutes.MAIN);
     });
