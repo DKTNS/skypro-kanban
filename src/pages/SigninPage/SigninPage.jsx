@@ -1,12 +1,16 @@
 import { appRoutes } from "../../lib/appRoutes";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as SI from "./SigninPage.styled";
 import "./signin.css";
 import { useState } from "react";
 import { signIn } from "../../api";
+import { useUser } from "../../components/Hooks/useUser";
 
-export default function SigninPage({ login }) {
+export default function SigninPage() {
+  const {login} = useUser();
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState({ login: "", password: "" });
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target; // Извлекаем имя поля и его значение
 
@@ -19,11 +23,11 @@ export default function SigninPage({ login }) {
     await signIn(loginData)
       .then((data) => {
         login(data.user);
-        /* navigate(appRoutes.MAIN); вызавало ошибку 400 на входе даже при отсутствии логина пароля*/
+        navigate(appRoutes.MAIN);
       })
-      .catch((error) => {
+/*       .catch((error) => {
         alert(error.message + ": попробуйте повторить запрос");
-      });
+      }); */
   };
 
   return (
@@ -36,19 +40,17 @@ export default function SigninPage({ login }) {
             </SI.SigninModalTtl>
 
             <SI.SigninModalFormLogin>
-              <input
+              <SI.SigninModalInput
                 value={loginData.login}
                 onChange={handleInputChange}
-                className="modal__input"
                 type="text"
                 name="login"
                 id="formlogin"
                 placeholder="Эл. почта"
               />
-              <input
+              <SI.SigninModalInput
                 value={loginData.password}
                 onChange={handleInputChange}
-                className="modal__input"
                 type="password"
                 name="password"
                 id="formpassword"
