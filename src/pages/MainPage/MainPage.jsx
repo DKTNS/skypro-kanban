@@ -44,35 +44,31 @@ function MainPage() {
     setCards([...cards, newCard]);
   }
   return (
+    <Wrapper>
+      <div className="wrapper">
+        <h1></h1>
+        {/*<!-- pop-up start-->*/}
 
-      <Wrapper>
-        <div className="wrapper">
-          <h1></h1>
-          {/*<!-- pop-up start-->*/}
+        <Outlet />
+        {/*<!-- pop-up end-->*/}
 
-          <Outlet />
-          {/*<!-- pop-up end-->*/}
-
-          <Header addCard={addCard} />
-          {isLoading ? (
-            "Loading..."
-          ) : (
-            <MainContent>
-              {statusList.map((status) => (
-                <MainColumn
-                  title={status}
-                  key={status}
-                  cardList={
-                    cards?.filter((card) => card.status === status) || []
-                  }
-                />
-              ))}
-            </MainContent>
-          )}
-        </div>
-        <script src="js/script.js"></script>
-      </Wrapper>
-
+        <Header addCard={addCard} />
+        {isLoading ? (
+          "Loading..."
+        ) : (
+          <MainContent>
+            {statusList.map((status) => (
+              <MainColumn
+                title={status}
+                key={status}
+                cardList={cards?.filter((card) => card.status === status) || []}
+              />
+            ))}
+          </MainContent>
+        )}
+      </div>
+      <script src="js/script.js"></script>
+    </Wrapper>
   );
 }
 
