@@ -5,6 +5,7 @@ import MainContent from "../../components/MainContent/MainContent";
 import MainColumn from "../../components/MainColumn/MainColumn";
 import { getTodos } from "../../api";
 import { useUser } from "../../components/Hooks/useUser";
+import { Wrapper } from "../../Styled/Common/Common.styled";
 
 const statusList = [
   "Без статуса",
@@ -17,16 +18,18 @@ const statusList = [
 export default function MainPage() {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const {user} = useUser()
+  const { user } = useUser();
 
   useEffect(() => {
-    getTodos({ token: user.token }).then((todos) => {
-      console.log(todos);
-      setCards(todos.tasks);
-      setIsLoading(false);
-    }, 1000).catch(() => {
-      aler (error);
-    }); // 2 секунды задержки (изменил на 1 секунду)
+    getTodos({ token: user.token })
+      .then((todos) => {
+        console.log(todos);
+        setCards(todos.tasks);
+        setIsLoading(false);
+      }, 1000)
+      .catch(() => {
+        alert("Error");
+      }); // 2 секунды задержки (изменил на 1 секунду)
   }, [user.token]); // Пустой массив зависимостей для запуска только при монтировании компонента
 
   function addCard() {
@@ -41,30 +44,34 @@ export default function MainPage() {
     setCards([...cards, newCard]);
   }
   return (
-    <>
-      <div className="wrapper">
-        <h1></h1>
-        {/*<!-- pop-up start-->*/}
 
-        <Outlet />
-        {/*<!-- pop-up end-->*/}
+      <Wrapper>
+        <div className="wrapper">
+          <h1></h1>
+          {/*<!-- pop-up start-->*/}
 
-        <Header addCard={addCard} />
-        {isLoading ? (
-          "Loading..."
-        ) : (
-          <MainContent>
-            {statusList.map((status) => (
-              <MainColumn
-                title={status}
-                key={status}
-                cardList={cards.filter((card) => card.status === status)}
-              />
-            ))}
-          </MainContent>
-        )}
-      </div>
-      <script src="js/script.js"></script>
-    </>
+          <Outlet />
+          {/*<!-- pop-up end-->*/}
+
+          <Header addCard={addCard} />
+          {isLoading ? (
+            "Loading..."
+          ) : (
+            <MainContent>
+              {statusList.map((status) => (
+                <MainColumn
+                  title={status}
+                  key={status}
+                  cardList={
+                    cards?.filter((card) => card.status === status) || []
+                  }
+                />
+              ))}
+            </MainContent>
+          )}
+        </div>
+        <script src="js/script.js"></script>
+      </Wrapper>
+
   );
 }

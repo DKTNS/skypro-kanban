@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Сard({ topic, title, date, _id }) {
   return (
+
     <CS.CardItem>
       <CS.CardCard>
         <CS.CardGroup>
@@ -55,5 +56,6 @@ export default function Сard({ topic, title, date, _id }) {
         </CS.CardContent>
       </CS.CardCard>
     </CS.CardItem>
+
   );
 }

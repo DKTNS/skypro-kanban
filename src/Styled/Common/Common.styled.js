@@ -6,3 +6,10 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 0 30px;
 `;
+export const Wrapper = styled.div`
+  max-width: 100%;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #f1f1f1;
+`;
