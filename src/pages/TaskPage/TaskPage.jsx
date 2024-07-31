@@ -28,8 +28,11 @@ export default function TaskPage() {
     await postTodos(taskData).then((data) => {
       console.log(data);
       putDownTask(data);
+      console.log(data);
       navigate(appRoutes.MAIN);
+      console.log(data);
     });
+    
   };
 
   const handleFormSubmit = async (e) => {

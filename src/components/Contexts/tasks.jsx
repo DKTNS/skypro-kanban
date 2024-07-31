@@ -18,7 +18,7 @@ export const TaskProvider = ({ children }) => {
     localStorage.setItem("task", JSON.stringify(task));
   };
   return (
-    <TaskContext.Provider value={{ task, _id, key, putDownTask }}>
+    <TaskContext.Provider value={{ task, putDownTask }}>
       {children}
     </TaskContext.Provider>
   );
