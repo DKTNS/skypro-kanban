@@ -8,23 +8,23 @@ import { useTask } from "../../components/Hooks/useTask.js";
 import { useUser } from "../../components/Hooks/useUser.js";
 
 export default function TaskPage() {
-  const { user } = useUser();
-  const [selectedDate, setSelectedDate] = useState(null);
-  const { putDownTask } = useTask();
-  const [newTask, setNewTask] = useState({
+  const { user } = useUser(); //хук инфы о текущем юзере
+  const [selectedDate, setSelectedDate] = useState(null); //состояние даты с добавление нового значения setSelectDate
+  const { putDownTask } = useTask(); //хук useTask для добавления и обновления задач
+  const [newTask, setNewTask] = useState({ //создание новой задачи
     title: "",
     description: "",
     topic: "",
   });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e) => { //обработчик изменения вводв. вызываем при изменения в полях
     const { name, value } = e.target; // Извлекаем имя поля и его значение
     setNewTask({
       ...newTask, // Копируем текущие данные из состояния
       [name]: value, // Обновляем нужное поле
     });
   };
-  const handleTask = async (taskData) => {
+  const handleTask = async (taskData) => { //функ. отправляет инф с заполненых полей в апи
     await postTodos(taskData).then((data) => {
       console.log(data);
       putDownTask(data);
@@ -32,8 +32,8 @@ export default function TaskPage() {
     });
   };
 
-  const handleFormSubmit = async () => {
-    // e.preventDefault();
+  const handleFormSubmit = async (e) => {
+     e.preventDefault();
     const taskData = {
       ...newTask,
       date: selectedDate,

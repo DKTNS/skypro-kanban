@@ -13,8 +13,8 @@ export default function MainColumn({ title, cardList }) {
             topic={card.topic}
             title={card.title}
             date={card.date}
-            key={card._id}
-            id={card._id}
+            key={card.id}
+            id={card.id}
           />
         ))}
       </MCO.MainColumnCards>

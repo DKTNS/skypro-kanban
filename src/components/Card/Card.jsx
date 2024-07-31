@@ -2,7 +2,7 @@ import * as CS from "./Card.styled.js";
 import { topicHeader } from "../../lib/topic.js";
 import { Link } from "react-router-dom";
 
-export default function Сard({ topic, title, date, _id }) {
+export default function Сard({ topic, title, date, id }) {
   return (
     <CS.CardItem>
       <CS.CardCard>
@@ -18,7 +18,7 @@ export default function Сard({ topic, title, date, _id }) {
           </CS.CardBtn>
         </CS.CardGroup>
         <CS.CardContent>
-          <Link to={`task/${_id}`}>{<CS.CardTitle>{title}</CS.CardTitle>}</Link>
+          <Link to={`task/${id}`}>{<CS.CardTitle>{title}</CS.CardTitle>}</Link>
           <CS.CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"

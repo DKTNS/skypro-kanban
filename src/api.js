@@ -32,15 +32,15 @@ export async function postTodos({ task, token }) {
 }
 
 //Изменение задачи(task)
-export async function putTodos({ task, _id, token }) {
-  const response = await fetch(baseHost + `/${_id}`, {
+export async function putTodos({ task, id, token }) {
+  const response = await fetch(baseHost + `/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
     method: "PUT",
     body: JSON.stringify({
       task,
-      _id,
+      id,
       token,
     }),
   });
@@ -52,15 +52,15 @@ export async function putTodos({ task, _id, token }) {
 }
 
 //Delete task
-export async function deleteTodos({ task, _id, token }) {
-  const response = await fetch(baseHost + `/${_id}`, {
+export async function deleteTodos({ task, id, token }) {
+  const response = await fetch(baseHost + `/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
     method: "DELETE",
     body: JSON.stringify({
       task,
-      _id,
+      id,
       token,
     }),
   });
@@ -108,7 +108,6 @@ export function signIn({ login, password }) {
     method: "POST",
     body: JSON.stringify({
       login,
-      name,
       password,
     }),
   }).then((response) => {
