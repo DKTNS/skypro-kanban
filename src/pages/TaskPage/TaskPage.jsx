@@ -3,9 +3,9 @@ import * as TP from "./TaskPage.styled.js";
 import { useState } from "react";
 import { postTodos } from "../../api";
 import { appRoutes } from "../../lib/appRoutes";
-import { useUser } from "../../components/Hooks/useUser.js";
-import { useTask } from "../../components/Hooks/useTask.js";
 import { Calendar } from "../../components/Calendar/Calendar.jsx";
+import { useTask } from "../../components/Hooks/useTask.js";
+import { useUser } from "../../components/Hooks/useUser.js";
 
 export default function TaskPage() {
   const { user } = useUser();
