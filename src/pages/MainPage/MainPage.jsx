@@ -35,7 +35,7 @@ function MainPage() {
   function addCard() {
     //добавление карточки
     const newCard = {
-      id: cards.length + 1,
+      _id: cards.length + 1,
       theme: "Web Design",
       title: "Название задачи",
       date: "30.10.23",

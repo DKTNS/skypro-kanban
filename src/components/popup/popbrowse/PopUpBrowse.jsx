@@ -2,9 +2,9 @@ import { Link, useParams } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
 
 export default function PopUpBrowse() {
-  const {id}=useParams();
+  const {_id}=useParams();
   return (
-    <div className="pop-browse" id="popBrowse">
+    <div className="pop-browse" _id="popBrowse">
       <div className="pop-browse__container">
         <div className="pop-browse__block">
           <div className="pop-browse__content">
