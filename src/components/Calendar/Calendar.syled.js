@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { DayPicker } from 'react-day-picker';
 
 
-export const Calendar = styled.div`
+export const CalendarR = styled.div`
   margin-bottom: 20px;
   font-weight: 400;
   font-size: 14px;

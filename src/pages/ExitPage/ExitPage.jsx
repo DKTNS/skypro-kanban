@@ -17,13 +17,13 @@ export default function ExitPage() {
                 <EP.PopExitYes
                   onClick={() => {
                     logout();
-                    navigate(appRoutes.SIGNIN);
+                    navigate(Route.SIGNIN);
                   }}
                   id="exitYes"
                 >
                   Да, выйти
                 </EP.PopExitYes>
-                <Link to={appRoutes.MAIN}>
+                <Link to={Route.MAIN}>
                   <EP.ButtonNo>
                     <EP.PopExitNo id="exitNo">Нет, остаться</EP.PopExitNo>
                   </EP.ButtonNo>

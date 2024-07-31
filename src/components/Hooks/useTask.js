@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { TasksContext } from "../Contexts/tasks.jsx";
 
-export function useTasks() {
+export function useTask() {
   return useContext(TasksContext);
 }

@@ -1,10 +1,10 @@
 import { format } from "date-fns";
 import { DayPicker } from "react-day-picker";
-//import "react-day-picker/style.css";
+import "react-day-picker/dist/style.css";
 import ru from "date-fns/locale/ru";
-import { CategoriesP, ChooseDate } from "./Calendar.syled";
+import { CalendarR, CategoriesP, ChooseDate } from "./Calendar.syled";
 
-export function Calendar({ selectedDate, setSelectedDate }) {
+export const Calendar = ({ selectedDate, setSelectedDate }) => {
   let footer = (
     <ChooseDate>
       <p>Пожалуйста, выберите дату</p>
@@ -18,7 +18,7 @@ export function Calendar({ selectedDate, setSelectedDate }) {
     );
   }
   return (
-    <Calendar>
+    <CalendarR>
       <CategoriesP>Даты</CategoriesP>
       <DayPicker
         mode="single"
@@ -27,7 +27,7 @@ export function Calendar({ selectedDate, setSelectedDate }) {
         footer={footer}
         /* locale={ru} */
       />
-    </Calendar>
+    </CalendarR>
   );
 }
 

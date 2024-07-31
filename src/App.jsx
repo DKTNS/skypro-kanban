@@ -8,16 +8,19 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import ExitPage from "./pages/ExitPage/ExitPage";
 import TaskPage from "./pages/TaskPage/TaskPage";
 import "./App.css";
+import { WatchTaskPage } from "./pages/WatchTaskPage/WatchTaskPage";
+import { EditTaskPage } from "./pages/EditTaskPage/EditTaskPage";
+
 
 export default function App() {
-
   return (
     <Routes>
       <Route element={<PrivateRoute />}>
         <Route path={appRoutes.MAIN} element={<MainPage />}>
           <Route path={appRoutes.TASK} element={<TaskPage />} />
+          <Route path={appRoutes.WATCHTASK} element={<WatchTaskPage />} />
+          <Route path={appRoutes.EDITTASK} element={<EditTaskPage />} />
           <Route path={appRoutes.EXIT} element={<ExitPage />} />
-
         </Route>
       </Route>
       <Route path={appRoutes.SIGNIN} element={<SigninPage />} />

@@ -4,7 +4,7 @@ import { Container } from "../../Styled/Common/Common.styled";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
 
-export default function Header({ addCard }, { user }) {
+export default function Header() {
   const [isOpened, setIsOpened] = useState(false);
   function togglePopup() {
     setIsOpened((prev) => !prev);
@@ -25,13 +25,13 @@ export default function Header({ addCard }, { user }) {
           </S.HeaderLogoImg>
           <S.HeaderNav>
             <Link to={appRoutes.TASK}>
-            <S.HeaderBtnMainNew /* onClick={addCard} */ id="btnMainNew">
+            <S.HeaderBtnMainNew id="btnMainNew">
               {/* <S.HeaderBtnMainNewText> */}
                 Создать новую задачу
               {/* </S.HeaderBtnMainNewText> */}
             </S.HeaderBtnMainNew>
             </Link>
-            <S.HeaderUser onClick={togglePopup} href="#user-set-target">
+            <S.HeaderUser onClick={togglePopup} /* href="#user-set-target" */>
               Ivan Ivanov
             </S.HeaderUser>
 
@@ -42,7 +42,7 @@ export default function Header({ addCard }, { user }) {
                 <S.HeaderPopUserSetMail>
                   ivan.ivanov@gmail.com
                 </S.HeaderPopUserSetMail>
-                <S.HeaderPopUserSetTheme>
+                {/* <S.HeaderPopUserSetTheme>
                   <S.HeaderPopUserSetThemeP>
                     Темная тема
                   </S.HeaderPopUserSetThemeP>
@@ -50,7 +50,7 @@ export default function Header({ addCard }, { user }) {
                     type="checkbox"
                     name="checkbox"
                   />
-                </S.HeaderPopUserSetTheme>
+                </S.HeaderPopUserSetTheme> */}
                 <S.HeaderExitButton type="button">
                   <Link to={appRoutes.SIGNIN}>
                     <S.HeaderPopUserSetBtn>Выйти</S.HeaderPopUserSetBtn>
