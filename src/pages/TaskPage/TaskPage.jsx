@@ -1,5 +1,4 @@
-//import PopUpBrowse from "../../components/popup/popbrowse/PopUpBrowse";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import * as TP from "./TaskPage.styled.js";
 import { useState } from "react";
 import { postTodos } from "../../api";
@@ -8,10 +7,8 @@ import { useUser } from "../../components/Hooks/useUser.js";
 import { useTask } from "../../components/Hooks/useTask.js";
 import { Calendar } from "../../components/Calendar/Calendar.jsx";
 
-
 export default function TaskPage() {
   const { user } = useUser();
-  const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
   const { putDownTask } = useTask();
   const [newTask, setNewTask] = useState({
@@ -19,8 +16,24 @@ export default function TaskPage() {
     description: "",
     topic: "",
   });
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target; // Извлекаем имя поля и его значение
+    setNewTask({
+      ...newTask, // Копируем текущие данные из состояния
+      [name]: value, // Обновляем нужное поле
+    });
+  };
+  const handleTask = async (taskData) => {
+    await postTodos(taskData).then((data) => {
+      console.log(data);
+      putDownTask(data);
+      navigate(appRoutes.MAIN);
+    });
+  };
+
+  const handleFormSubmit = async () => {
+    // e.preventDefault();
     const taskData = {
       ...newTask,
       date: selectedDate,
@@ -31,22 +44,7 @@ export default function TaskPage() {
       token: user.token,
     });
   };
-  const handleInputChange = (e) => {
-    const { name, value } = e.target; // Извлекаем имя поля и его значение
-    setNewTask({
-      ...newTask, // Копируем текущие данные из состояния
-      [name]: value, // Обновляем нужное поле
-    });
-  };
-  const handleTask = async ({ taskData, token }) => {
-    await postTodos({
-      task: taskData,
-      token: user.token,
-    }).then((data) => {
-      console.log(data);
-      navigate(appRoutes.MAIN);
-    });
-  };
+
   const addTaskBtn = (taskData) => {
     handleFormSubmit(taskData);
     handleTask(taskData);

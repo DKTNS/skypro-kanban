@@ -7,20 +7,19 @@ function getTaskFromLocalStorage() {
     console.log(error);
     return null;
   }
-};
+}
 
-export const TaskContext = createContext(null);
+export const TaskContext = createContext();
 export const TaskProvider = ({ children }) => {
   const [task, setTask] = useState(getTaskFromLocalStorage());
-};
 
-export const TasksContext = createContext(null);
-export const TasksProvider = ({ children }) => {
-  const [task, setTask] = useState();
-  const [isLoading, setIsLoading] = useState();
+  const putDownTask = (task) => {
+    setTask(task);
+    localStorage.setItem("task", JSON.stringify(task));
+  };
   return (
-    <TasksContext.Provider value={{ task, setTask, isLoading, setIsLoading }}>
+    <TaskContext.Provider value={{ task, putDownTask }}>
       {children}
-    </TasksContext.Provider>
+    </TaskContext.Provider>
   );
-}
+};

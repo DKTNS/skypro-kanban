@@ -15,7 +15,7 @@ const statusList = [
   "Готово",
 ];
 
-export default function MainPage() {
+function MainPage() {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useUser();
@@ -30,7 +30,7 @@ export default function MainPage() {
       .catch(() => {
         alert("Error");
       }); // 2 секунды задержки (изменил на 1 секунду)
-  }, [user.token]); // Пустой массив зависимостей для запуска только при монтировании компонента
+  }, [user]); // Пустой массив зависимостей для запуска только при монтировании компонента
 
   function addCard() {
     //добавление карточки
@@ -75,3 +75,5 @@ export default function MainPage() {
 
   );
 }
+
+export default MainPage;

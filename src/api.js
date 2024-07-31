@@ -16,13 +16,13 @@ export async function getTodos({ token }) {
 }
 
 //Добавление задачи
-export async function postTodos({taskData,token}) {
+export async function postTodos({ task, token }) {
   const response = await fetch(baseHost, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
     method: "POST",
-    body: JSON.stringify({taskData}),
+    body: JSON.stringify({ task }),
   });
   if (!response.status === 201) {
     throw new Error("Ошибка");
@@ -32,14 +32,16 @@ export async function postTodos({taskData,token}) {
 }
 
 //Изменение задачи(task)
-export async function putTodos({ text, id }) {
-  const response = await fetch(baseHost + `/${id}`, {
+export async function putTodos({ task, _id, token }) {
+  const response = await fetch(baseHost + `/${_id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
     method: "PUT",
     body: JSON.stringify({
-      text,
+      task,
+      _id,
+      token,
     }),
   });
   if (!response.status === 201) {
@@ -50,14 +52,16 @@ export async function putTodos({ text, id }) {
 }
 
 //Delete task
-export async function deleteTodos() {
-  const response = await fetch(`https://wedev-api.sky.pro/api/kanban/${id}`, {
+export async function deleteTodos({ task, _id, token }) {
+  const response = await fetch(baseHost + `/${_id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
     method: "DELETE",
     body: JSON.stringify({
-      text,
+      task,
+      _id,
+      token,
     }),
   });
   if (!response.status === 201) {
