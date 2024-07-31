@@ -1,4 +1,4 @@
-import { Link} from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import * as TP from "./TaskPage.styled.js";
 import { useState } from "react";
 import { postTodos } from "../../api";
@@ -8,6 +8,7 @@ import { useTask } from "../../components/Hooks/useTask.js";
 import { useUser } from "../../components/Hooks/useUser.js";
 
 export default function TaskPage() {
+  const navigate = useNavigate();
   const { user } = useUser(); //хук инфы о текущем юзере
   const [selectedDate, setSelectedDate] = useState(null); //состояние даты с добавление нового значения setSelectDate
   const { putDownTask } = useTask(); //хук useTask для добавления и обновления задач
