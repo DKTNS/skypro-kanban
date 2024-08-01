@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 
+
 function getTaskFromLocalStorage() {
   try {
     return JSON.parse(localStorage.getItem("task"));

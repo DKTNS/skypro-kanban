@@ -9,6 +9,7 @@ export default function Header() {
   function togglePopup() {
     setIsOpened((prev) => !prev);
   }
+
   return (
     <S.StyledHeader>
       <Container>
@@ -31,13 +32,12 @@ export default function Header() {
               {/* </S.HeaderBtnMainNewText> */}
             </S.HeaderBtnMainNew>
             </Link>
-            <S.HeaderUser onClick={togglePopup} /* href="#user-set-target" */>
-              Ivan Ivanov
+            <S.HeaderUser onClick={togglePopup} >
+            Ivan Ivanov
             </S.HeaderUser>
 
             {isOpened && (
               <S.HeaderPopUserSet id="user-set-target">
-                {/*<!-- <a href="">x</a> --> */}
                 <S.HeaderPopUserSetName>Ivan Ivanov</S.HeaderPopUserSetName>
                 <S.HeaderPopUserSetMail>
                   ivan.ivanov@gmail.com

@@ -5,11 +5,7 @@ import ru from "date-fns/locale/ru";
 import { CalendarR, CategoriesP, ChooseDate } from "./Calendar.syled";
 
 export const Calendar = ({ selectedDate, setSelectedDate }) => {
-  let footer = (
-    <ChooseDate>
-      <p>Пожалуйста, выберите дату</p>
-    </ChooseDate>
-  );
+  let footer = <ChooseDate>Пожалуйста, выберите дату</ChooseDate>;
   if (selectedDate) {
     footer = (
       <ChooseDate>
@@ -29,7 +25,7 @@ export const Calendar = ({ selectedDate, setSelectedDate }) => {
       />
     </CalendarR>
   );
-}
+};
 
 /* export function MyDatePicker() {
   const [selected, setSelected] = useState();

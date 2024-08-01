@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { Calendar } from "../../components/Calendar/Calendar";
 import * as S from "./WatchTaskPage.styled";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
-import { Calendar } from "../../components/Calendar/Calendar";
 
-export const WatchTaskPage = () => {
+
+export default function WatchTaskPage() {
   const [selectedDate, setSelectedDate] = useState(null);
 
   return (
@@ -50,18 +51,18 @@ export const WatchTaskPage = () => {
                 <S.BtnBrowse>
                 <S.BtnBrowseEditBtnBor>
                   <Link to={appRoutes.EDITTASK}>
-                    <S.A>Редактировать задачу</S.A>
+                    Редактировать задачу
                   </Link>
                 </S.BtnBrowseEditBtnBor>
                 <S.BtnBrowseDeleteBtnBor>
                   <Link to={"#"}>
-                    <S.A>Удалить задачу</S.A>
+                    Удалить задачу
                   </Link>
                 </S.BtnBrowseDeleteBtnBor>
                 </S.BtnBrowse>
                 <S.BtnBrowseCloseBtnBg>
                 <Link to={"#"}>
-                  <S.ABg>Закрыть</S.ABg>
+                  Закрыть
                 </Link>
               </S.BtnBrowseCloseBtnBg>
               </S.BtnGroup>

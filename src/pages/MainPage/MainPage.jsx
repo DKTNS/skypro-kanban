@@ -4,7 +4,7 @@ import Header from "../../components/Header/Header";
 import MainContent from "../../components/MainContent/MainContent";
 import MainColumn from "../../components/MainColumn/MainColumn";
 import { getTodos } from "../../api";
-import { useUser } from "../../components/Hooks/useUser";
+import { useUser } from "../../Hooks/useUser";
 import { Wrapper } from "../../Styled/Common/Common.styled";
 
 const statusList = [

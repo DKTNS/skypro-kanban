@@ -1,24 +1,27 @@
 import * as CS from "./Card.styled.js";
 import { topicHeader } from "../../lib/topic.js";
 import { Link } from "react-router-dom";
+import { appRoutes } from "../../lib/appRoutes.js";
 
 export default function Сard({ topic, title, date, _id }) {
   return (
     <CS.CardItem>
       <CS.CardCard>
+      <Link to={appRoutes.WATCHTASK} target="_self">
         <CS.CardGroup>
           <CS.CardTopic $themeColor={topicHeader[topic]}>
             <CS.TopicText>{topic}</CS.TopicText>
           </CS.CardTopic>
-
+          <Link to={appRoutes.WATCHTASK} target="_self">
           <CS.CardBtn>
             <CS.CardBtnElement />
             <CS.CardBtnElement />
             <CS.CardBtnElement />
           </CS.CardBtn>
+          </Link>
         </CS.CardGroup>
         <CS.CardContent>
-          <Link to={`task/${_id}`}>{<CS.CardTitle>{title}</CS.CardTitle>}</Link>
+          <Link to={`edittask/${_id}`}>{<CS.CardTitle>{title}</CS.CardTitle>}</Link>
           <CS.CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -51,6 +54,7 @@ export default function Сard({ topic, title, date, _id }) {
             <CS.CardDateValue>{date}</CS.CardDateValue>
           </CS.CardDate>
         </CS.CardContent>
+        </Link>
       </CS.CardCard>
     </CS.CardItem>
   );

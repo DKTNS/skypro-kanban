@@ -4,7 +4,7 @@ import * as SI from "./SigninPage.styled";
 import "./signin.css";
 import { useState } from "react";
 import { signIn } from "../../api";
-import { useUser } from "../../components/Hooks/useUser";
+import { useUser } from "../../Hooks/useUser";
 
 export default function SigninPage() {
   const {login} = useUser();
@@ -62,7 +62,7 @@ export default function SigninPage() {
               </SI.SigninModalBtnEnter>
 
               <SI.SigninModalFormGroup>
-                <p>Нужно зарегистрироваться?</p>
+                Нужно зарегистрироваться?
 
                 <Link to={appRoutes.SIGNUP}>Регистрируйтесь здесь</Link>
               </SI.SigninModalFormGroup>
