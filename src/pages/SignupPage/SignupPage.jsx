@@ -71,7 +71,7 @@ export default function SignupPage() {
               <SUP.SignupModalFormGroup>
 
                   Уже есть аккаунт?{" "}
-                  <Link to={appRoutes.SIGNIN}><span>Войдите здесь</span></Link>
+                  <Link to={appRoutes.SIGNIN}>Войдите здесь</Link>
 
               </SUP.SignupModalFormGroup>
             </SUP.SignupModalFormLogin>

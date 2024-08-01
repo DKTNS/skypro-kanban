@@ -10,6 +10,7 @@ export default function SigninPage() {
   const {login} = useUser();
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({ login: "", password: "" });
+  const [error, setError] = useState(null); // Состояние для хранения ошибок
   
   const handleInputChange = (e) => {
     const { name, value } = e.target; // Извлекаем имя поля и его значение
@@ -19,15 +20,23 @@ export default function SigninPage() {
       [name]: value, // Обновляем нужное поле
     });
   };
-  const handleLogin = async () => {
-    await signIn(loginData)
-      .then((data) => {
-        login(data.user);
-        navigate(appRoutes.MAIN);
-      })
-/*       .catch((error) => {
-        alert(error.message + ": попробуйте повторить запрос");
-      }); */
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    setError(null); // Сбрасываем ошибку перед новым запросом
+
+    try {
+      const response = await signIn(loginData); // Используем loginData для входа
+      if (response.token) {
+        localStorage.setItem("token", response.token); // Сохраняем токен
+        console.log("Токен успешно сохранен:", response.token);
+        login(response.token); // Вызываем функцию login из useUser, если она есть
+        navigate(appRoutes.MAIN); // Перенаправляем на главную страницу или другую нужную страницу
+      }
+    } catch (error) {
+      console.error("Ошибка при входе:", error);
+      setError(error.message); // Устанавливаем сообщение об ошибке
+    }
   };
 
   return (
@@ -57,10 +66,10 @@ export default function SigninPage() {
                 placeholder="Пароль"
               />
 
-              <SI.SigninModalBtnEnter onClick={handleLogin}>
-                Войти
+              <SI.SigninModalBtnEnter to={appRoutes.MAIN} onClick={handleLogin}>
+              Войти
               </SI.SigninModalBtnEnter>
-
+              {error && <p style={{ color: 'red' }}>{error}</p>} {/* Отображаем ошибку, если она есть */}
               <SI.SigninModalFormGroup>
                 Нужно зарегистрироваться?
 

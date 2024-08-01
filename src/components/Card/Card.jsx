@@ -7,7 +7,7 @@ function Сard({ topic, title, date, _id }) {
   return (
     <CS.CardItem>
       <CS.CardCard>
-        <Link to={appRoutes.WATCHTASK} target="_self">
+        {/* <Link to={appRoutes.WATCHTASK} target="_self"> */}
           <CS.CardGroup>
             <CS.CardTopic $themeColor={topicHeader[topic]}>
               <CS.TopicText>{topic}</CS.TopicText>
@@ -22,7 +22,7 @@ function Сard({ topic, title, date, _id }) {
           </CS.CardGroup>
           <CS.CardContent>
             <Link to={`watchtask/${_id}`}>
-              {<CS.CardTitle>{title}</CS.CardTitle>}
+              <CS.CardTitle>{title}</CS.CardTitle>
             </Link>
             <CS.CardDate>
               <svg
@@ -56,7 +56,7 @@ function Сard({ topic, title, date, _id }) {
               <CS.CardDateValue>{date}</CS.CardDateValue>
             </CS.CardDate>
           </CS.CardContent>
-        </Link>
+        {/* </Link> */}
       </CS.CardCard>
     </CS.CardItem>
   );

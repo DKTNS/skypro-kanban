@@ -1,5 +1,5 @@
 const baseHost = "https://wedev-api.sky.pro/api/kanban";
-const userHost = "https://wedev-api.sky.pro/api/user";
+export const userHost = "https://wedev-api.sky.pro/api/user";
 
 //Получение списка задач
 export async function getTodos({ token }) {
@@ -71,19 +71,7 @@ export async function deleteTodos({ task, _id, token }) {
   return data;
 }
 
-//return user list
-export async function getUserList() {
-  const response = await fetch(userHost, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  if (!response.status === 200) {
-    throw new Error("Ошибка");
-  }
-  const data = await response.json();
-  return data;
-}
+
 
 //Регистрация
 export function signUp({ login, name, password }) {

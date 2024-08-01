@@ -7,9 +7,6 @@ import { useTask } from "../../../Hooks/useTask.js";
 import { appRoutes } from "../../../lib/appRoutes.js";
 import { Calendar } from "../../Calendar/Calendar.jsx";
 
-
-
-
 export default function PopUpNewCard() {
   const navigate = useNavigate();
   const { user } = useUser(); //хук инфы о текущем юзере
@@ -58,6 +55,7 @@ export default function PopUpNewCard() {
     handleFormSubmit(taskData);
     handleTask(taskData);
   };
+
   return (
     <TP.PopNewCard id="popNewCard">
       <TP.PopNewCardContainer>
@@ -70,7 +68,7 @@ export default function PopUpNewCard() {
             </Link>
           </TP.PopNewCardContent>
           <TP.PopNewCardWrap>
-            <TP.PopNewCardForm className="form-new"  id="formNewCard" action="#">
+            <TP.PopNewCardForm className="form-new" id="formNewCard" action="#">
               <TP.FormNewBlock>
                 <TP.Sbttl htmlFor="textArea">Название задачи</TP.Sbttl>
                 <TP.FormNewInput
