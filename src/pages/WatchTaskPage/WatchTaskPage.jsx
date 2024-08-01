@@ -25,10 +25,9 @@ export default function WatchTaskPage() {
           console.error("Задача не найдена");
         }
       } catch (error) {
-        console.error("Ошибка при получении задач:", error);
+        console.error("Ошибка при получении задач:", error); 
       }
     };
-
     fetchTask();
   }, [taskId, token]);
 

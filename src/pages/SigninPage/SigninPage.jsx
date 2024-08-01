@@ -28,14 +28,10 @@ export default function SigninPage() {
     try {
       const response = await signIn(loginData); // Используем loginData для входа
       console.log("Response:", response); // Логируем ответ для отладки
-      if (response && response.user && response.user.token) { // Проверяем наличие токена
         localStorage.setItem('token', response.user.token); // Сохраняем токен
         console.log("Токен успешно сохранен:", response.user.token);
         login(response.user.token); // Вызываем функцию login из useUser, если она есть
         navigate(appRoutes.MAIN); // Перенаправляем на главную страницу
-      } else {
-        setError("Не удалось получить токен."); // Устанавливаем сообщение об ошибке
-      }
     } catch (error) {
       console.error("Ошибка при входе:", error);
       setError(error.message); // Устанавливаем сообщение об ошибке
