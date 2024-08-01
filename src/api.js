@@ -94,6 +94,10 @@ export function signUp({ login, name, password }) {
 export function signIn({ login, password }) {
   return fetch(userHost + "/login", {
     method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`, // Добавляем токен
+    },
+  
     body: JSON.stringify({
       login,
       password,

@@ -24,14 +24,17 @@ export default function SigninPage() {
   const handleLogin = async (event) => {
     event.preventDefault();
     setError(null); // Сбрасываем ошибку перед новым запросом
-
+  
     try {
       const response = await signIn(loginData); // Используем loginData для входа
-      if (response.token) {
-        localStorage.setItem("token", response.token); // Сохраняем токен
-        console.log("Токен успешно сохранен:", response.token);
-        login(response.token); // Вызываем функцию login из useUser, если она есть
-        navigate(appRoutes.MAIN); // Перенаправляем на главную страницу или другую нужную страницу
+      console.log("Response:", response); // Логируем ответ для отладки
+      if (response && response.user && response.user.token) { // Проверяем наличие токена
+        localStorage.setItem('token', response.user.token); // Сохраняем токен
+        console.log("Токен успешно сохранен:", response.user.token);
+        login(response.user.token); // Вызываем функцию login из useUser, если она есть
+        navigate(appRoutes.MAIN); // Перенаправляем на главную страницу
+      } else {
+        setError("Не удалось получить токен."); // Устанавливаем сообщение об ошибке
       }
     } catch (error) {
       console.error("Ошибка при входе:", error);
