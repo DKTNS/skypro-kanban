@@ -8,6 +8,27 @@ import { appRoutes } from "../../lib/appRoutes";
 export default function WatchTaskPage() {
   const [selectedDate, setSelectedDate] = useState(null);
 
+  const [taskDescription, setTaskDescription] = useState(""); // Состояние для описания задачи
+  const handleEditTask = async () => {
+    try {
+        await putTodos({ task: { description: taskDescription }, _id: taskId, token: userToken }); // Передаем null для удаления
+      console.log("Задача обновлена");
+      // Здесь можно добавить логику для обновления состояния или навигации
+    } catch (error) {
+      console.error("Ошибка при удалении задачи:", error);
+    }
+  };
+
+
+
+  const handleDeleteTask = async () => {
+    try {
+      await deleteTodos({ task: _id }); // Удаляем задачу по идентификатору
+      console.log("Задача удалена");
+      // Здесь можно добавить логику для обновления состояния или навигации
+    } catch (error) {
+      console.error("Ошибка при удалении задачи:", error);
+    }};
   return (
     <S.PopBrowse id="popBrowse">
       <S.PopBrowseContainer>
@@ -50,18 +71,18 @@ export default function WatchTaskPage() {
               <S.BtnGroup>
                 <S.BtnBrowse>
                 <S.BtnBrowseEditBtnBor>
-                  <Link to={appRoutes.EDITTASK}>
+                  <Link to={appRoutes.MAIN} onClick={handleEditTask}>
                     Редактировать задачу
                   </Link>
                 </S.BtnBrowseEditBtnBor>
                 <S.BtnBrowseDeleteBtnBor>
-                  <Link to={"#"}>
+                  <Link to={appRoutes.MAIN} onClick={handleDeleteTask}>
                     Удалить задачу
                   </Link>
                 </S.BtnBrowseDeleteBtnBor>
                 </S.BtnBrowse>
                 <S.BtnBrowseCloseBtnBg>
-                <Link to={"#"}>
+                <Link to={appRoutes.MAIN} >
                   Закрыть
                 </Link>
               </S.BtnBrowseCloseBtnBg>

@@ -9,17 +9,17 @@ export default function PopUpBrowse({ taskId, userToken }) {
   const [selectedDate, setSelectedDate] = useState(null);
 
   const [taskDescription, setTaskDescription] = useState(""); // Состояние для описания задачи
-  const handleEditTask = async () => {
+
+  const handleSaveTask = async () => {
     try {
-      await putTodos({ task: { description: taskDescription }, _id: taskId, token: userToken }); // Передаем null для удаления
-      console.log("Задача обновлена");
+      await putTodos({ task: { description: taskDescription }, _id: taskId, token: userToken }); // Передаем описание 
+      console.log("Задача сохранена");
       // Здесь можно добавить логику для обновления состояния или навигации
     } catch (error) {
-      console.error("Ошибка при удалении задачи:", error);
+      console.error("Ошибка при сохранении задачи:", error);
     }
-
-
   };
+
   const handleDeleteTask = async () => {
     try {
       await deleteTodos({ _id: taskId, token: userToken }); // Удаляем задачу по идентификатору
@@ -82,17 +82,17 @@ export default function PopUpBrowse({ taskId, userToken }) {
               <S.BtnGroup>
                 <S.BtnBrowse>
                   <S.BtnBrowseCloseBtnBg>
-                    <Link to={"#"} onClick={handleEditTask}>
+                    <Link to={appRoutes.MAIN} onClick={handleSaveTask} >
                       Сохранить
                     </Link>
                   </S.BtnBrowseCloseBtnBg>
                   <S.BtnBrowseEditBtnBor>
-                    <Link to={appRoutes.MAIN} onClick={handleEditTask}>
+                    <Link to={appRoutes.MAIN} >
                       Отменить
                     </Link>
                   </S.BtnBrowseEditBtnBor>
                   <S.BtnBrowseDeleteBtnBor id="btnDelete">
-                    <Link to={appRoutes.EDITTASK} onClick={handleDeleteTask}>
+                    <Link to={appRoutes.MAIN} onClick={handleDeleteTask}>
                       Удалить задачу
                     </Link>
                   </S.BtnBrowseDeleteBtnBor>
