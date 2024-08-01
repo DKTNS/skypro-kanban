@@ -3,6 +3,7 @@ import * as S from "./PopUpBrowse.styled.js";
 import { Link } from "react-router-dom";
 import { deleteTodos, putTodos } from "../../../api.js";
 import { Calendar } from "../../Calendar/Calendar.jsx";
+import { appRoutes } from "../../../lib/appRoutes.js";
 
 export default function PopUpBrowse({ taskId, userToken }) {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -86,18 +87,18 @@ export default function PopUpBrowse({ taskId, userToken }) {
                     </Link>
                   </S.BtnBrowseCloseBtnBg>
                   <S.BtnBrowseEditBtnBor>
-                    <Link to={"#"} onClick={handleEditTask}>
+                    <Link to={appRoutes.MAIN} onClick={handleEditTask}>
                       Отменить
                     </Link>
                   </S.BtnBrowseEditBtnBor>
                   <S.BtnBrowseDeleteBtnBor id="btnDelete">
-                    <Link to={"#"} onClick={handleDeleteTask}>
+                    <Link to={appRoutes.EDITTASK} onClick={handleDeleteTask}>
                       Удалить задачу
                     </Link>
                   </S.BtnBrowseDeleteBtnBor>
                 </S.BtnBrowse>
                 <S.BtnBrowseCloseBtnBg>
-                  <Link to={"#"}>
+                  <Link to={appRoutes.MAIN}>
                     Закрыть
                   </Link>
                 </S.BtnBrowseCloseBtnBg>
