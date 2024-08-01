@@ -15,7 +15,7 @@ export default function WatchTaskPage() {
       console.log("Задача обновлена");
       // Здесь можно добавить логику для обновления состояния или навигации
     } catch (error) {
-      console.error("Ошибка при удалении задачи:", error);
+      console.error("Ошибка при редактировании задачи:", error);
     }
   };
 
