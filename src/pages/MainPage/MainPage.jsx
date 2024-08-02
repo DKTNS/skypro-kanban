@@ -23,7 +23,7 @@ function MainPage() {
   useEffect(() => {
     getTodos({ token: user.token })
       .then((todos) => {
-        console.log(todos);
+        console.log("Получаем список задач?:",todos);
         setCards(todos.tasks);
         setIsLoading(false);
       }, 1000)

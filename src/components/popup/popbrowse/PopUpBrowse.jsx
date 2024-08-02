@@ -40,7 +40,7 @@ export default function PopUpBrowse() {
 
     fetchTask();
   }, [taskId, token]);
-
+  console.log("Полученный токен после UseEffect:", token); // Для отладки
   const handleSaveTask = async () => {
     try {
       await putTodos({
@@ -117,7 +117,7 @@ export default function PopUpBrowse() {
               <S.BtnGroup>
                 <S.BtnBrowse>
                   <S.BtnBrowseCloseBtnBg>
-                    <Link to={appRoutes.MAIN} onClick={handleSaveTask} >
+                    <Link to={appRoutes.EDITTASK} onClick={handleSaveTask} >
                     <S.ABg>Сохранить</S.ABg>
                     </Link>
                   </S.BtnBrowseCloseBtnBg>
