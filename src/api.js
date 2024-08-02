@@ -4,10 +4,12 @@ export const userHost = "https://wedev-api.sky.pro/api/user";
 //Получение списка задач
 export async function getTodos({ token }) {
   const response = await fetch(baseHost, {
+    metod: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
+  console.log("Проверка получен ли токе в api и список юзеров:", token);
   if (!response.status === 200) {
     throw new Error("Ошибка");
   }
@@ -94,9 +96,6 @@ export function signUp({ login, name, password }) {
 export function signIn({ login, password }) {
   return fetch(userHost + "/login", {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`, // Добавляем токен
-    },
   
     body: JSON.stringify({
       login,
@@ -104,7 +103,7 @@ export function signIn({ login, password }) {
     }),
   }).then((response) => {
     if (response.status === 400) {
-      throw new Error("Неправильный логинпароль");
+      throw new Error("Неправильный логин/пароль");
     }
     return response.json();
   });

@@ -19,7 +19,7 @@ function MainPage() {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useUser();
-
+  console.log("Что получем в user:", user); // Выводим user в консоль
   useEffect(() => {
     getTodos({ token: user.token })
       .then((todos) => {

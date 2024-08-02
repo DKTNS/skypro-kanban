@@ -17,7 +17,7 @@ export default function WatchTaskPage() {
     const fetchTask = async () => {
       try {
         const todos = await getTodos({ token }); // Получаем список задач
-        const fetchedTask = todos.find((todo) => todo.id === parseInt(taskId)); // Находим задачу по ID
+        const fetchedTask = todos.find((todo) => todo._id === parseInt(taskId)); // Находим задачу по ID
         if (fetchedTask) {
           setTask(fetchedTask);
           setTaskDescription(fetchedTask.description); // Устанавливаем описание задачи
@@ -35,7 +35,7 @@ export default function WatchTaskPage() {
     try {
       await putTodos({
         task: { description: taskDescription },
-        _id: task._id,
+        id: task._id,
         token: token,
       }); // Передаем null для удаления
       console.log(task); // Проеврка доступности task

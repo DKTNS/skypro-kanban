@@ -7,11 +7,11 @@ import { signIn } from "../../api";
 import { useUser } from "../../Hooks/useUser";
 
 export default function SigninPage() {
-  const {login} = useUser();
+  const { login } = useUser();
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({ login: "", password: "" });
   const [error, setError] = useState(null); // Состояние для хранения ошибок
-  
+
   const handleInputChange = (e) => {
     const { name, value } = e.target; // Извлекаем имя поля и его значение
 
@@ -24,14 +24,14 @@ export default function SigninPage() {
   const handleLogin = async (event) => {
     event.preventDefault();
     setError(null); // Сбрасываем ошибку перед новым запросом
-  
+
     try {
-      const response = await signIn(loginData); // Используем loginData для входа
-      console.log("Response:", response); // Логируем ответ для отладки
-        localStorage.setItem('token', response.user.token); // Сохраняем токен
-        console.log("Токен успешно сохранен:", response.user.token);
-        login(response.user.token); // Вызываем функцию login из useUser, если она есть
-        navigate(appRoutes.MAIN); // Перенаправляем на главную страницу
+      const { token, user } = await signIn(loginData); // Используем loginData для входа
+      console.log("Response:", { token, user }); // Логируем ответ для отладки
+      localStorage.setItem('token', token); // Сохраняем токен
+      console.log("Токен успешно сохранен:", token);
+      login(user); // Вызываем функцию login из useUser, передавая данные пользователя
+      navigate(appRoutes.MAIN); // Перенаправляем на главную страницу
     } catch (error) {
       console.error("Ошибка при входе:", error);
       setError(error.message); // Устанавливаем сообщение об ошибке
@@ -64,14 +64,13 @@ export default function SigninPage() {
                 id="formpassword"
                 placeholder="Пароль"
               />
-
               <SI.SigninModalBtnEnter to={appRoutes.MAIN} onClick={handleLogin}>
-              Войти
+                Войти
               </SI.SigninModalBtnEnter>
-              {error && <p style={{ color: 'red' }}>{error}</p>} {/* Отображаем ошибку, если она есть */}
+              {error && <p style={{ color: "red" }}>{error}</p>}{" "}
+              {/* Отображаем ошибку, если она есть */}
               <SI.SigninModalFormGroup>
                 Нужно зарегистрироваться?
-
                 <Link to={appRoutes.SIGNUP}>Регистрируйтесь здесь</Link>
               </SI.SigninModalFormGroup>
             </SI.SigninModalFormLogin>
