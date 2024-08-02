@@ -9,7 +9,7 @@ export async function getTodos({ token }) {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log("Проверка получен ли токе в api и список юзеров:", token);
+  console.log("Проверка получен ли токен в api и список юзеров:", token);
   if (!response.status === 200) {
     throw new Error("Ошибка");
   }
@@ -18,13 +18,13 @@ export async function getTodos({ token }) {
 }
 
 //Добавление задачи
-export async function postTodos({ task, token }) {
+export async function postTodos({ text, token }) {
   const response = await fetch(baseHost, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
     method: "POST",
-    body: JSON.stringify({ task }),
+    body: JSON.stringify({text}),
   });
   if (!response.status === 201) {
     throw new Error("Ошибка");

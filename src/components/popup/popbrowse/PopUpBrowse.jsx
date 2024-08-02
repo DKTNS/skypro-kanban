@@ -18,7 +18,7 @@ export default function PopUpBrowse() {
     console.error("Токен отсутствует. Пожалуйста, войдите в систему.");
     return; // Прекращаем выполнение, если токен отсутствует
   }
-
+  console.log("Полученный токен после if:", token); // Для отладки
   useEffect(() => {
     const fetchTask = async () => {
       try {
