@@ -4,27 +4,33 @@ export const userHost = "https://wedev-api.sky.pro/api/user";
 //Получение списка задач
 export async function getTodos({ token }) {
   const response = await fetch(baseHost, {
-    metod: 'GET',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+      headers: {
+          Authorization: `Bearer ${token}`,
+      }
   });
-  console.log("Проверка получен ли токен в api и список юзеров:", token);
+
   if (!response.status === 200) {
-    throw new Error("Ошибка");
+      throw new Error("Ошибка");
   }
+
   const data = await response.json();
   return data;
 }
 
 //Добавление задачи
-export async function postTodos({ text, token }) {
+export async function postTodos({ taskData }) {
   const response = await fetch(baseHost, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${taskData.token}`,
     },
     method: "POST",
-    body: JSON.stringify({text}),
+    body: JSON.stringify({
+      title: taskData.title,
+      topic: taskData.topic,
+      status: taskData.status,
+      description: taskData.description,
+      date: taskData.date,
+    }),
   });
   if (!response.status === 201) {
     throw new Error("Ошибка");
@@ -34,36 +40,32 @@ export async function postTodos({ text, token }) {
 }
 
 //Изменение задачи(task)
-export async function putTodos({ task, _id, token }) {
-  const response = await fetch(baseHost + `/${_id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    method: "PUT",
-    body: JSON.stringify({
-      task,
-      _id,
-      token,
-    }),
+export async function putTodos({ token, id, taskData }) {
+  const response = await fetch(baseHost + `/${id}`, {
+      headers: {
+          Authorization: `Bearer ${token}`,
+      },
+      method: "PUT",
+      body: JSON.stringify(taskData)
   });
+
+
   if (!response.status === 201) {
-    throw new Error("Ошибка");
+      throw new Error("Ошибка");
   }
+
   const data = await response.json();
   return data;
 }
-
 //Delete task
-export async function deleteTodos({ task, _id, token }) {
-  const response = await fetch(baseHost + `/${_id}`, {
+export async function deleteTodos({ taskData, id, token }) {
+  const response = await fetch(`https://wedev-api.sky.pro/api/kanban/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
     method: "DELETE",
     body: JSON.stringify({
-      task,
-      _id,
-      token,
+      taskData,
     }),
   });
   if (!response.status === 201) {
@@ -72,8 +74,6 @@ export async function deleteTodos({ task, _id, token }) {
   const data = await response.json();
   return data;
 }
-
-
 
 //Регистрация
 export function signUp({ login, name, password }) {
@@ -96,7 +96,7 @@ export function signUp({ login, name, password }) {
 export function signIn({ login, password }) {
   return fetch(userHost + "/login", {
     method: "POST",
-  
+
     body: JSON.stringify({
       login,
       password,
@@ -107,4 +107,18 @@ export function signIn({ login, password }) {
     }
     return response.json();
   });
+}
+
+//return user list
+export async function getUserList(token) {
+  const response = await fetch(userHost, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!response.status === 201) {
+    throw new Error("Ошибка");
+  }
+  const data = await response.json();
+  return data;
 }

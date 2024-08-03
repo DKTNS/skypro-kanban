@@ -5,26 +5,19 @@ import SignupPage from "./pages/SignupPage/SignupPage";
 import MainPage from "./pages/MainPage/MainPage";
 import SigninPage from "./pages/SigninPage/SigninPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import PopUpExit from "./components/popup/popexit/PopUpExit";
-import PopUpNewCard from "./components/popup/popnewcard/PopUpNewCard";
-import PopUpBrowse from "./components/popup/popbrowse/PopUpBrowse";
-import WatchTaskPage from "./pages/WatchTaskPage/WatchTaskPage";
+import TaskPage from "./pages/TaskPage/TaskPage";
+import ExitPage from "./pages/ExitPage/ExitPage";
+import AddTaskPage from "./pages/AddTaskPage/AddTaskPage";
 import "./App.css";
-
-
-
-
 
 export default function App() {
   return (
     <Routes>
       <Route element={<PrivateRoute />}>
         <Route path={appRoutes.MAIN} element={<MainPage />}>
-          
-          <Route path={appRoutes.WATCHTASK} element={<WatchTaskPage />} />
-          <Route path={appRoutes.EDITTASK} element={<PopUpBrowse />} />
-          <Route path={appRoutes.TASK} element={<PopUpNewCard />} />
-          <Route path={appRoutes.EXIT} element={<PopUpExit />} />
+          <Route path={appRoutes.ADD_TASK} element={<AddTaskPage />} />
+          <Route path={appRoutes.TASK} element={<TaskPage />} />
+          <Route path={appRoutes.EXIT} element={<ExitPage />} />
         </Route>
       </Route>
       <Route path={appRoutes.SIGNIN} element={<SigninPage />} />

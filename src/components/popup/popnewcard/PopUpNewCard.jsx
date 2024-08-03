@@ -1,59 +1,52 @@
 import { Link, useNavigate } from "react-router-dom";
 import * as TP from "./PopUpNewCard.styled.js";
 import { useState } from "react";
-import { postTodos } from "../../../api.js";
 import { useUser } from "../../../Hooks/useUser.js";
-import { useTask } from "../../../Hooks/useTask.js";
 import { appRoutes } from "../../../lib/appRoutes.js";
-import { Calendar } from "../../Calendar/Calendar.jsx";
+import { CalendarR } from "../../Calendar/Calendar.syled.js";
+import { useTasks } from "../../../Hooks/useTasks.js";
+import { postTodos } from "../../../api.js";
+
 
 export default function PopUpNewCard() {
+  const { user } = useUser();
+  const { setCards } = useTasks();
+  const [selectedDate, setSelectedDate] = React.useState(null);
   const navigate = useNavigate();
-  const { user } = useUser(); //хук инфы о текущем юзере
-  const [selectedDate, setSelectedDate] = useState(null); //состояние даты с добавление нового значения setSelectDate
-  const { putDownTask } = useTask(); //хук useTask для добавления и обновления задач
+
   const [newTask, setNewTask] = useState({
-    //создание новой задачи
-    title: "",
-    description: "",
-    topic: "",
+      title: "",
+      description: "",
+      topic: ""
   });
+  const handleFormSubmit = async (e) => {
+      e.preventDefault();
+      const taskData = {
+          ...newTask,
+          date: selectedDate,
+          token: user.token,
+
+      }
+      await postTodos(taskData).then((data) => {
+          console.log(data);
+          if (data.error) {
+              return alert("Пожалуйста заполните все поля");
+          }
+          setCards(data.tasks);
+          console.log(data.tasks);
+          navigate(appRoutes.MAIN);
+      }).catch((error) => {
+          alert(error.message);
+      })
+  };
 
   const handleInputChange = (e) => {
-    //обработчик изменения вводв. вызываем при изменения в полях
-    const { name, value } = e.target; // Извлекаем имя поля и его значение
-    setNewTask({
-      ...newTask, // Копируем текущие данные из состояния
-      [name]: value, // Обновляем нужное поле
-    });
-  };
-  const handleTask = async (taskData) => {
-    //функ. отправляет инф с заполненых полей в апи
-    await postTodos(taskData).then((data) => {
-      console.log(data);
-      putDownTask(data);
-      console.log(data);
-      navigate(appRoutes.MAIN);
-      console.log(data);
-    });
-  };
-
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    const taskData = {
-      ...newTask,
-      date: selectedDate,
-    };
-    console.log(taskData);
-    await postTodos({
-      task: taskData,
-      token: user.token,
-    });
-  };
-
-  const addTaskBtn = (taskData) => {
-    handleFormSubmit(taskData);
-    handleTask(taskData);
+      const { name, value } = e.target; // Извлекаем имя поля и его значение
+      console.log(name, value)
+      setNewTask({
+          ...newTask, // Копируем текущие данные из состояния
+          [name]: value, // Обновляем нужное поле
+      });
   };
 
   return (
@@ -93,7 +86,7 @@ export default function PopUpNewCard() {
               </TP.FormNewBlock>
             </TP.PopNewCardForm>
 
-            <Calendar
+            <CalendarR
               selectedDate={selectedDate}
               setSelectedDate={setSelectedDate}
             />
@@ -132,7 +125,7 @@ export default function PopUpNewCard() {
             </TP.CopywritingLabel>
           </TP.CategoriesThemes>
           <TP.ButtonDiv>
-            <TP.FormNewCreatButton onClick={addTaskBtn} id="btnCreate">
+            <TP.FormNewCreatButton onClick={handleFormSubmit} id="btnCreate">
               Создать задачу
             </TP.FormNewCreatButton>
           </TP.ButtonDiv>

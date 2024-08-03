@@ -1,75 +1,44 @@
-import { useState, useEffect  } from "react";
+import { useState } from "react";
 import * as S from "./Header.style";
 import { Container } from "../../Styled/Common/Common.styled";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
-import { userHost } from "../../api";
-
-//return user list
-export async function getUserList(token) {
-  const response = await fetch("https://wedev-api.sky.pro/api/user", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  if (!response.status === 200) {
-    throw new Error("Ошибка");
-  }
-  const data = await response.json();
-  return data;
-}
+import { useUser } from "../../Hooks/useUser";
 
 export default function Header() {
+  const { user } = useUser();
   const [isOpened, setIsOpened] = useState(false);
-  const [user, setUser] = useState({ name: "", email: "" }); // Состояние для хранения данных пользователя
-
   function togglePopup() {
     setIsOpened((prev) => !prev);
   }
-
-  useEffect(() => {
-    async function fetchUser() {
-      try {
-        const userData = await getUserList(); // Получаем данные пользователя
-        setUser({ name: userData.name, email: userData.email }); // Устанавливаем данные в состояние
-      } catch (error) {
-        console.error("Ошибка при получении данных пользователя:", error);
-      }
-    }
-
-    fetchUser();
-  }, []);
 
   return (
     <S.StyledHeader>
       <Container>
         <S.HeaderBlock>
           <S.HeaderLogoImg className="_show _light">
-            <Link to={appRoutes.MAIN} target="_self">
+            <Link target="_self">
               <img src="/images/logo.png" alt="logo" />
             </Link>
           </S.HeaderLogoImg>
           <S.HeaderLogoImg className="_dark">
-            <Link to={appRoutes.MAIN} target="_self">
+            <Link target="_self">
               <img src="images/logo_dark.png" alt="logo" />
             </Link>
           </S.HeaderLogoImg>
           <S.HeaderNav>
-            <Link to={appRoutes.TASK}>
+            <Link to={appRoutes.ADD_TASK}>
               <S.HeaderBtnMainNew id="btnMainNew">
                 {/* <S.HeaderBtnMainNewText> */}
                 Создать новую задачу
                 {/* </S.HeaderBtnMainNewText> */}
               </S.HeaderBtnMainNew>
             </Link>
-            <S.HeaderUser onClick={togglePopup}> {user.name} Имя </S.HeaderUser>
-
+            <S.HeaderUser onClick={togglePopup}>{user.name}</S.HeaderUser>
             {isOpened && (
-              <S.HeaderPopUserSet id="user-set-target" >
-                <S.HeaderPopUserSetName>  </S.HeaderPopUserSetName>
-                <S.HeaderPopUserSetMail>
-                {user.email} Е-маил
-                </S.HeaderPopUserSetMail>
+              <S.HeaderPopUserSet id="user-set-target">
+                <S.HeaderPopUserSetName>{user.name}</S.HeaderPopUserSetName>
+                <S.HeaderPopUserSetMail>{user.login}</S.HeaderPopUserSetMail>
                 {/* <S.HeaderPopUserSetTheme>
                   <S.HeaderPopUserSetThemeP>
                     Темная тема
@@ -80,7 +49,7 @@ export default function Header() {
                   />
                 </S.HeaderPopUserSetTheme> */}
                 <S.HeaderExitButton type="button">
-                  <Link to={appRoutes.SIGNIN}>
+                  <Link to={appRoutes.EXIT}>
                     <S.HeaderPopUserSetBtn>Выйти</S.HeaderPopUserSetBtn>
                   </Link>
                 </S.HeaderExitButton>

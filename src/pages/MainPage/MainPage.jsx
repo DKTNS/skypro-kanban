@@ -5,71 +5,59 @@ import MainContent from "../../components/MainContent/MainContent";
 import MainColumn from "../../components/MainColumn/MainColumn";
 import { getTodos } from "../../api";
 import { useUser } from "../../Hooks/useUser";
-import { Wrapper } from "../../Styled/Common/Common.styled";
+import { useTasks } from "../../Hooks/useTasks";
 
-const statusList = [
-  "Без статуса",
-  "Нужно сделать",
-  "В работе",
-  "Тестирование",
-  "Готово",
-];
+
 
 function MainPage() {
-  const [cards, setCards] = useState([]);
+  const { cards, setCards } = useTasks();
   const [isLoading, setIsLoading] = useState(true);
+
   const { user } = useUser();
-  console.log("Что получем в user:", user); // Выводим user в консоль
+
   useEffect(() => {
     getTodos({ token: user.token })
       .then((todos) => {
-        console.log("Получаем список задач?:",todos);
+        console.log(todos);
         setCards(todos.tasks);
         setIsLoading(false);
-      }, 1000)
-      .catch(() => {
-        alert("Error");
-      }); // 2 секунды задержки (изменил на 1 секунду)
-  }, [user]); // Пустой массив зависимостей для запуска только при монтировании компонента
+      })
+      .catch((error) => {
+        throw new Error(error);
+      });
+  }, [user, setCards]);
 
-  function addCard() {
-    //добавление карточки
-    const newCard = {
-      _id: cards.length + 1,
-      theme: "Web Design",
-      title: "Название задачи",
-      date: "30.10.23",
-      status: "Готово",
-    };
-    setCards([...cards, newCard]);
-  }
+  const statusList = [
+    "Без статуса",
+    "Нужно сделать",
+    "В работе",
+    "Тестирование",
+    "Готово",
+  ];
+
   return (
-    <Wrapper>
+    <>
+      <Outlet />
       <div className="wrapper">
-        <h1></h1>
-        {/*<!-- pop-up start-->*/}
-
         <Outlet />
-        {/*<!-- pop-up end-->*/}
-
-        <Header addCard={addCard} />
+        <Header />
         {isLoading ? (
-          "Loading..."
+          "Загрузка..."
         ) : (
           <MainContent>
             {statusList.map((status) => (
               <MainColumn
                 title={status}
                 key={status}
-                cardList={cards?.filter((card) => card.status === status) || []}
+                cardList={cards?.filter((card) => card.status === status)}
               />
             ))}
           </MainContent>
         )}
       </div>
-      <script src="js/script.js"></script>
-    </Wrapper>
+    </>
   );
 }
 
 export default MainPage;
+

@@ -1,65 +1,66 @@
-import * as CS from "./Card.styled.js";
+import * as S from "./Card.styled.js";
 import { topicHeader } from "../../lib/topic.js";
 import { Link } from "react-router-dom";
-import { appRoutes } from "../../lib/appRoutes.js";
+import { format } from "date-fns";
+import { ru } from "date-fns/locale";
 
 function Сard({ topic, title, date, _id }) {
   return (
-    <CS.CardItem>
-      <CS.CardCard>
-        {/* <Link to={appRoutes.WATCHTASK} target="_self"> */}
-          <CS.CardGroup>
-            <CS.CardTopic $themeColor={topicHeader[topic]}>
-              <CS.TopicText>{topic}</CS.TopicText>
-            </CS.CardTopic>
-            <Link to={appRoutes.WATCHTASK} target="_self">
-              <CS.CardBtn>
-                <CS.CardBtnElement />
-                <CS.CardBtnElement />
-                <CS.CardBtnElement />
-              </CS.CardBtn>
+    <S.CardsItem>
+    <S.CardsCard>
+        <S.CardsGroup>
+            <S.CardTopic $themeColor={topicHeader[topic]}>
+                <S.TopicText>{topic}</S.TopicText>
+            </S.CardTopic>
+            <Link to={`task/${_id}`}>
+            <div target="_self">
+                <S.CardBtn>
+                    <S.CardBtnDiv />
+                    <S.CardBtnDiv />
+                    <S.CardBtnDiv />
+                </S.CardBtn>
+            </div>
             </Link>
-          </CS.CardGroup>
-          <CS.CardContent>
-            <Link to={`watchtask/${_id}`}>
-              <CS.CardTitle>{title}</CS.CardTitle>
+        </S.CardsGroup>
+        <S.CardContent>
+            <Link to={`task/${_id}`}>
+                <S.CardTittle>{title}</S.CardTittle>
             </Link>
-            <CS.CardDate>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="13"
-                height="13"
-                viewBox="0 0 13 13"
-                fill="none"
-              >
-                <g clipPath="url(#clip0_1_415)">
-                  <path
-                    d="M10.5625 2.03125H2.4375C1.7644 2.03125 1.21875 2.5769 1.21875 3.25V10.5625C1.21875 11.2356 1.7644 11.7812 2.4375 11.7812H10.5625C11.2356 11.7812 11.7812 11.2356 11.7812 10.5625V3.25C11.7812 2.5769 11.2356 2.03125 10.5625 2.03125Z"
-                    stroke="#94A6BE"
-                    strokeWidth="0.8"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M11.7812 4.0625H1.21875M3.25 1.21875V2.03125V1.21875ZM9.75 1.21875V2.03125V1.21875Z"
-                    stroke="#94A6BE"
-                    strokeWidth="0.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1_415">
-                    <rect width="13" height="13" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-              <CS.CardDateValue>{date}</CS.CardDateValue>
-            </CS.CardDate>
-          </CS.CardContent>
-        {/* </Link> */}
-      </CS.CardCard>
-    </CS.CardItem>
-  );
+            <S.CardDate>
+                <S.CardDateSvg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={13}
+                    height={13}
+                    viewBox="0 0 13 13"
+                    fill="none"
+                >
+                    <g clipPath="url(#clip0_1_415)">
+                        <path
+                            d="M10.5625 2.03125H2.4375C1.7644 2.03125 1.21875 2.5769 1.21875 3.25V10.5625C1.21875 11.2356 1.7644 11.7812 2.4375 11.7812H10.5625C11.2356 11.7812 11.7812 11.2356 11.7812 10.5625V3.25C11.7812 2.5769 11.2356 2.03125 10.5625 2.03125Z"
+                            stroke="#94A6BE"
+                            strokeWidth="0.8"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M11.7812 4.0625H1.21875M3.25 1.21875V2.03125V1.21875ZM9.75 1.21875V2.03125V1.21875Z"
+                            stroke="#94A6BE"
+                            strokeWidth="0.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_1_415">
+                            <rect width={13} height={13} fill="white" />
+                        </clipPath>
+                    </defs>
+                </S.CardDateSvg>
+                <S.CardDateP>{format(date, "PP", { locale: ru })}</S.CardDateP>
+            </S.CardDate>
+        </S.CardContent>
+    </S.CardsCard>
+</S.CardsItem>
+);
 }
 
 export default Сard;

@@ -1,8 +1,7 @@
 export const appRoutes = {
   MAIN: "/",
-  TASK: "/task/:_id", // Путь для создания новой карточки
-  WATCHTASK: "/watchtask/:_id",
-  EDITTASK: "/edittask/:_id", // Путь для редактирования карточки
+  ADD_TASK: "/addtask", //Новая карточка
+  TASK: '/task/:id', //существующая карточка
   EXIT: "/exit", // Путь для выхода
   SIGNIN: "/signin", // Путь для страницы входа
   SIGNUP: "/signup", // Путь для страницы регистрации

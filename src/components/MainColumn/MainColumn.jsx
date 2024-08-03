@@ -14,7 +14,7 @@ export default function MainColumn({ title, cardList }) {
           topic={card.topic}
           title={card.title}
           date={card.date}
-          _id={card._id}
+          id={card._id}
           />
         ))}
       </MCO.MainColumnCards>

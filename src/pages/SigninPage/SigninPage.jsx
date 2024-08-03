@@ -6,36 +6,26 @@ import { useState } from "react";
 import { signIn } from "../../api";
 import { useUser } from "../../Hooks/useUser";
 
+
 export default function SigninPage() {
   const { login } = useUser();
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({ login: "", password: "" });
-  const [error, setError] = useState(null); // Состояние для хранения ошибок
 
   const handleInputChange = (e) => {
     const { name, value } = e.target; // Извлекаем имя поля и его значение
-
     setLoginData({
       ...loginData, // Копируем текущие данные из состояния
       [name]: value, // Обновляем нужное поле
     });
   };
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    setError(null); // Сбрасываем ошибку перед новым запросом
-
-    try {
-      const { token, user } = await signIn(loginData); // Используем loginData для входа
-      console.log("Response:", { token, user }); // Логируем ответ для отладки
-      localStorage.setItem('token', token); // Сохраняем токен
-      console.log("Токен успешно сохранен:", token);
-      login(user); // Вызываем функцию login из useUser, передавая данные пользователя
-      navigate(appRoutes.MAIN); // Перенаправляем на главную страницу
-    } catch (error) {
-      console.error("Ошибка при входе:", error);
-      setError(error.message); // Устанавливаем сообщение об ошибке
-    }
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    await signIn(loginData).then((data) => {
+      login(data.user);
+      navigate(appRoutes.MAIN);
+    });
   };
 
   return (
@@ -64,11 +54,9 @@ export default function SigninPage() {
                 id="formpassword"
                 placeholder="Пароль"
               />
-              <SI.SigninModalBtnEnter to={appRoutes.MAIN} onClick={handleLogin}>
+              <SI.SigninModalBtnEnter onClick={handleLogin}>
                 Войти
               </SI.SigninModalBtnEnter>
-              {error && <p style={{ color: "red" }}>{error}</p>}{" "}
-              {/* Отображаем ошибку, если она есть */}
               <SI.SigninModalFormGroup>
                 Нужно зарегистрироваться?
                 <Link to={appRoutes.SIGNUP}>Регистрируйтесь здесь</Link>

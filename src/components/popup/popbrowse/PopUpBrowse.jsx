@@ -1,111 +1,177 @@
-import { useEffect, useState } from "react";
-import * as S from "./PopUpBrowse.styled.js";
-import { Link, useParams } from "react-router-dom";
-import { deleteTodos, getTodos, putTodos } from "../../../api.js";
-import { Calendar } from "../../Calendar/Calendar.jsx";
-import { appRoutes } from "../../../lib/appRoutes.js";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import * as S from "./PopUpBrowse.styled";
+import { useState } from "react";
+import { deleteTodos, putTodos } from "../../../api";
+import { appRoutes } from "../../../lib/appRoutes";
+import { useTasks } from "../../../Hooks/useTasks";
+import { useUser } from "../../../Hooks/useUser";
 
 export default function PopUpBrowse() {
-  const { taskId } = useParams(); // Получаем taskId из параметров маршрута
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [taskDescription, setTaskDescription] = useState(""); // Состояние для описания задачи
-  const [task, setTask] = useState(null);
-  const token = localStorage.getItem('token'); // Получаем токен из localStorage или контекста
+  const { id } = useParams();
+  const { user } = useUser();
+  const { cards, setCards } = useTasks();
+  const navigate = useNavigate();
 
-  console.log("Полученный токен:", token); // Для отладки
+  const [isEdited, setIsEdited] = useState(false);
+  const openedCard = cards.find((card) => card._id == `${id}`);
+  const [selectedDate, setSelectedDate] = useState(openedCard?.date);
 
-  if (!token) {
-    console.error("Токен отсутствует. Пожалуйста, войдите в систему.");
-    return; // Прекращаем выполнение, если токен отсутствует
-  }
-  console.log("Полученный токен после if:", token); // Для отладки
-  useEffect(() => {
-    const fetchTask = async () => {
-      try {
-        const todos = await getTodos({ token }); // Получаем список задач
-        if (!Array.isArray(todos)) {
-          throw new Error("Полученные данные не являются массивом");
-        }
-        const fetchedTask = todos.find((todo) => todo.id === parseInt(taskId)); // Находим задачу по ID
-        if (fetchedTask) {
-          setTask(fetchedTask);
-          setTaskDescription(fetchedTask.description); // Устанавливаем описание задачи
-        } else {
-          console.error("Задача не найдена");
-        }
-      } catch (error) {
-        console.error("Ошибка при получении задач:", error);
-      }
-    };
+  const [editTask, setEditTask] = useState({
+    title: openedCard?.title,
+    description: openedCard?.description,
+    topic: openedCard?.topic,
+    status: openedCard?.status,
+    date: openedCard?.date,
+  });
+  console.log(editTask);
 
-    fetchTask();
-  }, [taskId, token]);
-  console.log("Полученный токен после UseEffect:", token); // Для отладки
-  const handleSaveTask = async () => {
-    try {
-      await putTodos({
-        task: { description: taskDescription },
-        _id: task._id, // Используем _id задачи
-        token: token,
+  const deleteTask = () => {
+    deleteTodos({ token: user.token, id: id })
+      .then((newCard) => {
+        setCards(newCard.tasks);
+        navigate(appRoutes.MAIN);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error);
       });
-      console.log(task); // Проверка доступности task
-      console.log("Задача обновлена");
-    } catch (error) {
-      console.error("Ошибка при редактировании задачи:", error);
-    }
   };
 
-  const handleDeleteTask = async () => {
-    try {
-      await deleteTodos({ _id: taskId, token: userToken }); // Удаляем задачу по идентификатору
-      console.log("Задача удалена");
-      // Здесь можно добавить логику для обновления состояния или навигации
-    } catch (error) {
-      console.error("Ошибка при удалении задачи:", error);
-    }};
-  
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    const taskData = {
+      ...editTask,
+      date: selectedDate,
+    };
+    console.log(taskData);
+    putTodos({ token: user.token, id: id, taskData: taskData })
+      .then((newCard) => {
+        console.log(newCard);
+        setCards(newCard.tasks);
+        navigate(appRoutes.MAIN);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditTask({
+      ...editTask,
+      [name]: value,
+    });
+  };
+
+  if (!openedCard) {
+    return <Navigate to={appRoutes.MAIN} />;
+  }
   return (
-    <S.PopBrowse id="popBrowse">
+    <S.PopBrowseStyled>
       <S.PopBrowseContainer>
         <S.PopBrowseBlock>
           <S.PopBrowseContent>
             <S.PopBrowseTopBlock>
-              <S.PopBrowseTtl>Название задачи</S.PopBrowseTtl>
-              <S.CategoriesThemeTopOrangeActiveCategory>
-                <S.WebDesign>Web Design</S.WebDesign>
-              </S.CategoriesThemeTopOrangeActiveCategory>
+              <S.PopBroweTitle>
+                Название задачи: {openedCard.title}
+              </S.PopBroweTitle>
+              <S.PopBroweColor $themeColor={topicHeader[openedCard.topic]}>
+                <TopicText $themeColor={topicHeader[openedCard.topic]}>
+                  {openedCard.topic}
+                </TopicText>
+              </S.PopBroweColor>
             </S.PopBrowseTopBlock>
             <S.PopBrowseStatus>
-              <S.StatusPSbttl>Статус</S.StatusPSbttl>
-              <S.StatusThemes>
-                <S.StatusThemeHide>
-                  <S.StatusThemeP>Без статуса</S.StatusThemeP>
-                </S.StatusThemeHide>
-                <S.StatusThemeGray>
-                  <S.StatusThemePGray>Нужно сделать</S.StatusThemePGray>
-                </S.StatusThemeGray>
-                <S.StatusThemeHide>
-                  <S.StatusThemeP>В работе</S.StatusThemeP>
-                </S.StatusThemeHide>
-                <S.StatusThemeHide>
-                  <S.StatusThemeP>Тестирование</S.StatusThemeP>
-                </S.StatusThemeHide>
-                <S.StatusThemeHide>
-                  <S.StatusThemeP>Готово</S.StatusThemeP>
-                </S.StatusThemeHide>
-              </S.StatusThemes>
+              <S.StatusPsubTtlP>Статус: {openedCard.status}</S.StatusPsubTtlP>
+              {isEdited && (
+                <S.StatusThemesDiv>
+                  <S.OpenedCardTheme
+                    type="radio"
+                    id="radio1"
+                    name="status"
+                    value="Без статуса"
+                    onChange={handleInputChange}
+                  />
+                  <S.StatusThemeLabel htmlFor="radio1">
+                    Без статуса
+                  </S.StatusThemeLabel>
+
+                  <S.OpenedCardTheme
+                    type="radio"
+                    id="radio2"
+                    name="status"
+                    value="Нужно сделать"
+                    onChange={handleInputChange}
+                  />
+                  <S.StatusThemeLabel htmlFor="radio2">
+                    Нужно сделать
+                  </S.StatusThemeLabel>
+
+                  <S.OpenedCardTheme
+                    type="radio"
+                    id="radio3"
+                    name="status"
+                    value="В работе"
+                    onChange={handleInputChange}
+                  />
+                  <S.StatusThemeLabel htmlFor="radio3">
+                    В работе
+                  </S.StatusThemeLabel>
+
+                  <S.OpenedCardTheme
+                    type="radio"
+                    id="radio4"
+                    name="status"
+                    value="Тестирование"
+                    onChange={handleInputChange}
+                  />
+                  <S.StatusThemeLabel htmlFor="radio4">
+                    Тестирование
+                  </S.StatusThemeLabel>
+
+                  <S.OpenedCardTheme
+                    type="radio"
+                    id="radio5"
+                    name="status"
+                    value="Готово"
+                    onChange={handleInputChange}
+                  />
+                  <S.StatusThemeLabel htmlFor="radio5">
+                    Готово
+                  </S.StatusThemeLabel>
+                </S.StatusThemesDiv>
+              )}
             </S.PopBrowseStatus>
+
             <S.PopBrowseWrap>
               <S.PopBrowseForm id="formBrowseCard" action="#">
                 <S.FormBrowseBlock>
-                  <S.Subttl htmlFor="textArea01">Описание задачи</S.Subttl>
-                  <S.FormBrowseArea
-                    name="text"
-                    id="textArea01"
-                    value={taskDescription}
-                    onChange={(e) => setTaskDescription(e.target.value)} // Обновляем состояние при изменении
-                    placeholder="Введите описание задачи..."
-                  ></S.FormBrowseArea>
+                  <S.FormBrowseTitle htmlFor="textArea01">
+                    Описание задачи
+                  </S.FormBrowseTitle>
+                  {!isEdited && (
+                    <S.FormBrowseArea
+                      onChange={handleInputChange}
+                      name="description"
+                      id="textArea01"
+                      readOnly=""
+                      placeholder="Введите описание задачи..."
+                      defaultValue={openedCard.description}
+                      disabled={true}
+                    />
+                  )}
+                  {isEdited && (
+                    <S.FormBrowseArea
+                      onChange={handleInputChange}
+                      name="description"
+                      id="textArea01"
+                      readOnly=""
+                      placeholder="Введите описание задачи..."
+                      defaultValue={openedCard.description}
+                      disabled={false}
+                    />
+                  )}
                 </S.FormBrowseBlock>
               </S.PopBrowseForm>
               <Calendar
@@ -113,35 +179,51 @@ export default function PopUpBrowse() {
                 setSelectedDate={setSelectedDate}
               />
             </S.PopBrowseWrap>
-            <S.PopBrowseBtnEditHide>
-              <S.BtnGroup>
-                <S.BtnBrowse>
-                  <S.BtnBrowseCloseBtnBg>
-                    <Link to={appRoutes.EDITTASK} onClick={handleSaveTask} >
-                    <S.ABg>Сохранить</S.ABg>
-                    </Link>
-                  </S.BtnBrowseCloseBtnBg>
-                  <S.BtnBrowseEditBtnBor>
-                    <Link to={appRoutes.MAIN} >
-                    <S.A>Отменить</S.A>
-                    </Link>
-                  </S.BtnBrowseEditBtnBor>
-                  <S.BtnBrowseDeleteBtnBor id="btnDelete">
-                    <Link to={appRoutes.MAIN} onClick={handleDeleteTask}>
-                    <S.A>Удалить задачу</S.A>
-                    </Link>
-                  </S.BtnBrowseDeleteBtnBor>
-                </S.BtnBrowse>
-                <S.BtnBrowseCloseBtnBg>
-                  <Link to={appRoutes.MAIN}>
-                  <S.ABg>Закрыть</S.ABg>
-                  </Link>
-                </S.BtnBrowseCloseBtnBg>
-              </S.BtnGroup>
-            </S.PopBrowseBtnEditHide>
+            {!isEdited && (
+              <S.PopBrowseButtonBrowse>
+                <S.ButtonGroup>
+                  <S.ButtonChengeDelete
+                    onClick={() => {
+                      setIsEdited(!isEdited);
+                    }}
+                  >
+                    Редактировать задачу
+                  </S.ButtonChengeDelete>
+                  <S.ButtonChengeDelete onClick={deleteTask}>
+                    Удалить задачу
+                  </S.ButtonChengeDelete>
+                </S.ButtonGroup>
+                <Link to={appRoutes.MAIN}>
+                  <S.ButtonClose>Закрыть</S.ButtonClose>
+                </Link>
+              </S.PopBrowseButtonBrowse>
+            )}
+            {isEdited && (
+              <S.PopBrowseButtonBrowse>
+                <S.ButtonGroup>
+                  <S.ButtonChengeDelete onClick={handleFormSubmit}>
+                    Сохранить
+                  </S.ButtonChengeDelete>
+                  <S.ButtonChengeDelete
+                    onClick={() => {
+                      setIsEdited(!isEdited);
+                    }}
+                  >
+                    Отменить
+                  </S.ButtonChengeDelete>
+
+                  <S.ButtonChengeDelete onClick={deleteTask}>
+                    Удалить задачу
+                  </S.ButtonChengeDelete>
+                </S.ButtonGroup>
+                <Link to={appRoutes.MAIN}>
+                  <S.ButtonClose>Закрыть</S.ButtonClose>
+                </Link>
+              </S.PopBrowseButtonBrowse>
+            )}
           </S.PopBrowseContent>
         </S.PopBrowseBlock>
       </S.PopBrowseContainer>
-    </S.PopBrowse>
+    </S.PopBrowseStyled>
   );
 }

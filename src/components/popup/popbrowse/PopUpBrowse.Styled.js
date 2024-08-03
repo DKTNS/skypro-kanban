@@ -1,7 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { topicStyles } from "../../../lib/topic";
+import { TopicText } from "../../Card/Card.styled";
+import { hover01, hover03 } from "../../Common/Common.styled";
 
-export const PopBrowse = styled.div`
-  display: block;
+
+
+export const PopBrowseStyled = styled.div`
   width: 100%;
   height: 100%;
   min-width: 375px;
@@ -10,7 +14,14 @@ export const PopBrowse = styled.div`
   top: 0;
   left: 0;
   z-index: 7;
+  &:target {
+    display: block;
+  }
+  @media screen and (max-width: 660px) {
+    top: 70px;
+  }
 `;
+
 export const PopBrowseContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -21,7 +32,12 @@ export const PopBrowseContainer = styled.div`
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.4);
+  @media screen and (max-width: 660px) {
+    padding: 0;
+    justify-content: flex-start;
+  }
 `;
+
 export const PopBrowseBlock = styled.div`
   display: block;
   margin: 0 auto;
@@ -32,107 +48,161 @@ export const PopBrowseBlock = styled.div`
   border-radius: 10px;
   border: 0.7px solid #d4dbe5;
   position: relative;
+  @media screen and (max-width: 660px) {
+    border-radius: 0;
+  }
+  @media screen and (max-width: 495px) {
+    padding: 20px 16px 32px;
+  }
 `;
-export const PopBrowseTtl = styled.h3`
-  color: #000;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 24px;
-`;
-export const CategoriesThemeTopOrangeActiveCategory = styled.div`
-  display: inline-block;
-  width: auto;
-  height: 30px;
-  padding: 8px 20px;
-  border-radius: 24px;
-  margin-right: 7px;
-  opacity: 0.4;
-  background-color: #ffe4c2;
-  color: #ff6d00;
-  opacity: 1 !important;
-  display: block;
-`;
+
 export const PopBrowseContent = styled.div`
   display: block;
   text-align: left;
+  opacity: 1;
+  margin-bottom: 20px;
 `;
+export const StatusPsubTtlP = styled.div`
+  padding-bottom: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+
+`;
+export const StatusThemesDiv = styled.div`
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    gap: 7px;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    
+    letter-spacing: 0em;
+    text-align: center;
+    width: auto;
+    overflow: auto;
+`;
+
+export const StatusThemeLabel = styled.label`
+  display: inline-block;
+  height: 30px;
+  padding: 8px 20px 8px 20px;
+  border-radius: 24px;
+  
+  
+  cursor: pointer;
+  margin-right: 7px;
+  opacity: 40%;
+  background-color: ${({ $color }) =>
+        topicStyles[$color]?.backgroundColor || "#94A6BE"};
+
+  ${TopicText} {
+    color: ${({ $color }) => topicStyles[$color]?.color || "#FFFFF"};
+  }
+
+  &:hover {
+    opacity: 100%;
+  }
+  white-space: nowrap;
+
+`;
+export const StatusThemeActiveDiv = styled.div`
+width: 101px;
+height: 10px;
+font-family: Roboto;
+font-size: 14px;
+font-weight: 400;
+text-align: center;
+color: #FFFFFF;
+`;
+
 export const PopBrowseTopBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 18px;
 `;
-export const WebDesign = styled.p`
-  background-color: #ffe4c2;
-  color: #ff6d00;
+
+export const PopBroweTitle = styled.h3`
+  color: #000;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
 `;
+
 export const PopBrowseStatus = styled.div`
   margin-bottom: 11px;
 `;
-export const StatusPSbttl = styled.p`
+
+export const PopBrowseStatusTitle = styled.p`
+  margin-top: 14px;
   margin-bottom: 14px;
   color: #000;
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
+  display: inline-block;
+  padding: 8px 20px 8px 20px;
+  border-radius: 24px;
+  color: #94A6BE;
+  background: #d5dce6;
+  margin-right: 7px;
+  
+  
 `;
-export const StatusThemes = styled.div`
+
+export const PopBrowseStatusThemes = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
 `;
-export const StatusThemeHide = styled.div`
+
+export const PopBrowseStatusTheme = css`
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   color: #94a6be;
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
-`;
-export const StatusThemeP = styled.p`
-  font-size: 14px;
-  line-height: 1;
-  letter-spacing: -0.14px;
-`;
-export const StatusThemeGray = styled.div`
-  border-radius: 24px;
-  border: 0.7px solid rgba(148, 166, 190, 0.4);
-  color: #94a6be;
-  padding: 11px 14px 10px;
-  margin-right: 7px;
-  margin-bottom: 7px;
-  background: #94a6be;
-  color: #ffffff;
-`;
-export const StatusThemePGray = styled.p`
-  font-size: 14px;
-  line-height: 1;
-  letter-spacing: -0.14px;
-  background: #94a6be;
-  color: #ffffff;
+  p {
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: -0.14px;
+  }
 `;
 export const PopBrowseWrap = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  @media screen and (max-width: 660px) {
+    display: block;
+  }
 `;
+
 export const PopBrowseForm = styled.form`
   max-width: 370px;
   width: 100%;
   display: block;
   margin-bottom: 20px;
+  @media screen and (max-width: 495px) {
+    max-width: 100%;
+  }
 `;
+
 export const FormBrowseBlock = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export const Subttl = styled.label`
+export const FormBrowseTitle = styled.label`
   color: #000;
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
 `;
+
 export const FormBrowseArea = styled.textarea`
   max-width: 370px;
   width: 100%;
@@ -146,124 +216,111 @@ export const FormBrowseArea = styled.textarea`
   letter-spacing: -0.14px;
   margin-top: 14px;
   height: 200px;
-  ::placeholder {
+  &::-moz-placeholder {
     font-weight: 400;
     font-size: 14px;
     line-height: 1px;
     color: #94a6be;
     letter-spacing: -0.14px;
   }
-`;
-export const CategoriesPSbttl = styled.p`
-  margin-bottom: 14px;
-  color: #000;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1;
+  &::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1px;
+    color: #94a6be;
+    letter-spacing: -0.14px;
+  }
+  @media screen and (max-width: 495px) {
+    max-width: 100%;
+    height: 37px;
+  }
 `;
 
-export const PopBrowseBtnBrowse = styled.div`
+export const ThemeDownCategories = styled.div`
+  display: block;
+  margin-bottom: 20px;
+  @media screen and (max-width: 495px) {
+    display: block;
+    margin-bottom: 20px;
+  }
+`;
+
+export const PopBrowseButtonBrowse = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-  margin-right: 8px;
+  button {
+    height: 30px;
+    margin-bottom: 10px;
+    padding: 0 14px;
+    margin-right: 8px;
+  }
+  @media screen and (max-width: 495px) {
+    width: 100%;
+    button {
+      height: 40px;
+      width: 100%;
+      margin-right: 0px;
+    }
+  }
 `;
-export const BtnGroup = styled.div`
-  margin-right: 8px;
-  width: 100%;
-  margin-right: 0px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+
+export const ButtonGroup = styled.div`
+  button {
+    margin-right: 8px;
+  }
+  @media screen and (max-width: 495px) {
+    width: 100%;
+    button {
+      margin-right: 0px;
+    }
+  }
 `;
-export const BtnBrowseEditBtnBor = styled.button`
-  height: 30px;
-  margin-bottom: 10px;
-  padding: 0 14px;
+
+export const ButtonChengeDelete = styled.button`
   border-radius: 4px;
   border: 0.7px solid var(--palette-navy-60, #565eef);
   outline: none;
   background: transparent;
   color: #565eef;
-  cursor: pointer;
-  :hover {
-    background-color: #33399b;
-    color: #ffffff;
+  a {
+    color: #565eef;
   }
+  ${hover03}
 `;
-export const A = styled.span`
-  color: #565eef;
-  text-decoration: none;
-  cursor: pointer;
-`;
-export const BtnBrowseDeleteBtnBor = styled.button`
-  height: 30px;
-  margin-bottom: 10px;
-  padding: 0 14px;
-  border-radius: 4px;
-  border: 0.7px solid var(--palette-navy-60, #565eef);
-  outline: none;
-  background: transparent;
-  color: #565eef;
-  cursor: pointer;
-  outline: none;
-  :hover {
-    background-color: #33399b;
-    color: #ffffff;
-  }
-`;
-export const BtnBrowseCloseBtnBg = styled.button`
+
+export const ButtonClose = styled.button`
   border-radius: 4px;
   background: #565eef;
   border: none;
   outline: none;
   color: #ffffff;
-  :hover {
-    background-color: #33399b;
-  }
-`;
-export const BtnBrowse = styled.div`
-  display: flex;
-  margin-right: 8px;
-  gap: 8px;
-  height: 30px;
-`;
-export const ABg = styled.span`
-  color: #ffffff;
-  text-decoration: none;
-  cursor: pointer;
-  padding: 0 14px;
-`;
-export const PopBrowseBtnEditHide = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
-  height: 30px;
-  margin-bottom: 10px;
-  padding: 0 14px;
-  margin-right: 8px;
-`;
-export const BtnEditDeleteBtnBor = styled.button`
-  border-radius: 4px;
-  border: 0.7px solid var(--palette-navy-60, #565eef);
-  outline: none;
-  background: transparent;
-  color: #565eef;
-  :hover {
-    background-color: #33399b;
+  a {
     color: #ffffff;
   }
+  ${hover01}
 `;
-export const BtnEditCloseBtnBg = styled.span`
-  border-radius: 4px;
-  background: #565eef;
-  border: none;
-  outline: none;
-  color: #ffffff;
-  cursor: pointer;
-  :hover {
-    background-color: #33399b;
+
+export const OpenedCardTheme = styled.input`
+  display: none;
+
+&:checked + label {
+  opacity: 100%;
+}
+`;
+
+export const PopBroweColor = styled.div`
+  display: inline-block;
+  padding: 8px 20px 8px 20px;
+  width: 115px;
+  height: 30px;
+  border-radius: 24px;
+  background-color: ${({ $themeColor }) =>
+        topicStyles[$themeColor]?.backgroundColor || "#94a6be"};
+
+  ${TopicText} {
+    color: ${({ $themeColor }) => topicStyles[$themeColor]?.color || "#ffffff"};
   }
-`;
+  margin-right: 7px;
+`
