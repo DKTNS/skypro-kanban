@@ -4,30 +4,28 @@ import * as SI from "./SigninPage.styled";
 import "./signin.css";
 import { useState } from "react";
 import { signIn } from "../../api";
-import { useUser } from "../../components/Hooks/useUser";
+import { useUser } from "../../Hooks/useUser";
+
 
 export default function SigninPage() {
-  const {login} = useUser();
+  const { login } = useUser();
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({ login: "", password: "" });
-  
+
   const handleInputChange = (e) => {
     const { name, value } = e.target; // Извлекаем имя поля и его значение
-
     setLoginData({
       ...loginData, // Копируем текущие данные из состояния
       [name]: value, // Обновляем нужное поле
     });
   };
-  const handleLogin = async () => {
-    await signIn(loginData)
-      .then((data) => {
-        login(data.user);
-        navigate(appRoutes.MAIN);
-      })
-/*       .catch((error) => {
-        alert(error.message + ": попробуйте повторить запрос");
-      }); */
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    await signIn(loginData).then((data) => {
+      login(data.user);
+      navigate(appRoutes.MAIN);
+    });
   };
 
   return (
@@ -56,14 +54,11 @@ export default function SigninPage() {
                 id="formpassword"
                 placeholder="Пароль"
               />
-
               <SI.SigninModalBtnEnter onClick={handleLogin}>
                 Войти
               </SI.SigninModalBtnEnter>
-
               <SI.SigninModalFormGroup>
-                <p>Нужно зарегистрироваться?</p>
-
+                Нужно зарегистрироваться?
                 <Link to={appRoutes.SIGNUP}>Регистрируйтесь здесь</Link>
               </SI.SigninModalFormGroup>
             </SI.SigninModalFormLogin>

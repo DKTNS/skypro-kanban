@@ -2,7 +2,7 @@ import { useState } from "react";
 import { signUp } from "../../api";
 import { appRoutes } from "../../lib/appRoutes";
 import { useNavigate, Link } from "react-router-dom";
-import { useUser } from "../../components/Hooks/useUser";
+import { useUser } from "../../Hooks/useUser";
 import * as SUP from "./SignupPage.styled"
 
 export default function SignupPage() {
@@ -69,10 +69,10 @@ export default function SignupPage() {
                 Зарегистрироваться{" "}
               </SUP.SignupModalBtnEnter>
               <SUP.SignupModalFormGroup>
-                <p>
+
                   Уже есть аккаунт?{" "}
-                  <Link to={appRoutes.SIGNIN}><span>Войдите здесь</span></Link>
-                </p>
+                  <Link to={appRoutes.SIGNIN}>Войдите здесь</Link>
+
               </SUP.SignupModalFormGroup>
             </SUP.SignupModalFormLogin>
           </SUP.SignupModalBlock>

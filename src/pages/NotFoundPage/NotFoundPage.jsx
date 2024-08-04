@@ -7,8 +7,8 @@ export default function NotFoundPage() {
     <NF.BodyNfp>
       <NF.ErrorContainer>
         <NF.H1Font> 404 </NF.H1Font>
-        <NF.p>Oops! The page you're looking for is not here.</NF.p>
-        <Link to={appRoutes.MAIN}> Go Back to Home</Link>
+        <NF.p>Oops! Страница не найдена.</NF.p>
+        <Link to={appRoutes.MAIN}> Go на главную!</Link>
       </NF.ErrorContainer>
     </NF.BodyNfp>
   );
