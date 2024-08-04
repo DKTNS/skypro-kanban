@@ -1,25 +1,26 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
-export const MainColumn = styled.div`
+export const MainColumn = styled.div` 
   width: 20%;
   margin: 0 auto;
   display: block;
-`;
+`
 
 export const ColumnTitle = styled.div`
   padding: 0 10px;
   margin: 15px 0;
-  p {
+`
+
+export const ColumnTitleP = styled.div`
   color: #94A6BE;
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
   text-transform: uppercase;
-}
-`;
+`
 
-export const MainColumnCards = styled.div`
+export const Cards = styled.div`
   width: 100%;
   display: block;
   position: relative;
-`;
+`

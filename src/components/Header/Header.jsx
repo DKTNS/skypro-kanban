@@ -1,66 +1,64 @@
 import { useState } from "react";
-import * as S from "./Header.style";
-import { Container } from "../../Styled/Common/Common.styled";
+import * as S from "./Header.styled.js";
+import { Container } from "../../Styleds/Common.styled.js";
 import { Link } from "react-router-dom";
-import { appRoutes } from "../../lib/appRoutes";
+import { appRoutes } from "../../Styleds/lib/appRoutes.js";
+import { useUser } from "../../hooks/useUser.js";
 
-export default function Header({ addCard }, { user }) {
-  const [isOpened, setIsOpened] = useState(false);
-  function togglePopup() {
-    setIsOpened((prev) => !prev);
-  }
-  return (
-    <S.StyledHeader>
-      <Container>
-        <S.HeaderBlock>
-          <S.HeaderLogoImg className="_show _light">
-            <Link to={appRoutes.MAIN} target="_self">
-              <img src="/images/logo.png" alt="logo" />
-            </Link>
-          </S.HeaderLogoImg>
-          <S.HeaderLogoImg className="_dark">
-            <Link to={appRoutes.MAIN} target="_self">
-              <img src="images/logo_dark.png" alt="logo" />
-            </Link>
-          </S.HeaderLogoImg>
-          <S.HeaderNav>
-            <Link to={appRoutes.TASK}>
-            <S.HeaderBtnMainNew /* onClick={addCard} */ id="btnMainNew">
-              {/* <S.HeaderBtnMainNewText> */}
-                Создать новую задачу
-              {/* </S.HeaderBtnMainNewText> */}
-            </S.HeaderBtnMainNew>
-            </Link>
-            <S.HeaderUser onClick={togglePopup} href="#user-set-target">
-              Ivan Ivanov
-            </S.HeaderUser>
 
-            {isOpened && (
-              <S.HeaderPopUserSet id="user-set-target">
-                {/*<!-- <a href="">x</a> --> */}
-                <S.HeaderPopUserSetName>Ivan Ivanov</S.HeaderPopUserSetName>
-                <S.HeaderPopUserSetMail>
-                  ivan.ivanov@gmail.com
-                </S.HeaderPopUserSetMail>
-                <S.HeaderPopUserSetTheme>
-                  <S.HeaderPopUserSetThemeP>
-                    Темная тема
-                  </S.HeaderPopUserSetThemeP>
-                  <S.HeaderPopUserSetThemeInput
-                    type="checkbox"
-                    name="checkbox"
-                  />
-                </S.HeaderPopUserSetTheme>
-                <S.HeaderExitButton type="button">
-                  <Link to={appRoutes.SIGNIN}>
-                    <S.HeaderPopUserSetBtn>Выйти</S.HeaderPopUserSetBtn>
-                  </Link>
-                </S.HeaderExitButton>
-              </S.HeaderPopUserSet>
-            )}
-          </S.HeaderNav>
-        </S.HeaderBlock>
-      </Container>
-    </S.StyledHeader>
-  );
+
+function Header() {
+    const {user} = useUser();
+    const [isOpened, setIsOpened] = useState(false);
+    function togglePopup() {
+        setIsOpened((prev) => !prev)
+    }
+    return (
+        <S.StyledHeader>
+            <Container>
+                <S.HeaderBlock>
+                    <S.HeaderLogoShow>
+                        <a href="" target="_self">
+                            <img src="./images/logo.png" alt="logo" />
+                        </a>
+                    </S.HeaderLogoShow>
+                    <S.HeaderLogoDark>
+                        <a href="" target="_self">
+                            <img src="./images/logo_dark.png" alt="logo" />
+                        </a>
+                    </S.HeaderLogoDark>
+                    <S.HeaderNav>
+                        <S.HeaderBtnMainNew className="header__btn-main-new _hover01" id="btnMainNew">
+                            <Link to={appRoutes.ADD_TASK}>
+                                Создать новую задачу
+                            </Link>
+                        </S.HeaderBtnMainNew>
+                        <S.HeaderUser onClick={togglePopup} className="header__user _hover02">
+                            {user.name}
+                        </S.HeaderUser>
+                        {isOpened && (<S.HeaderpopUserSet
+                            
+                            id="user-set-target"
+                        >
+                            {/* <a href="">x</a> */}
+                            <p className="pop-user-set__name">{user.name}</p>
+                            <p className="pop-user-set__mail">{user.login}</p>
+                            
+                            <S.Lala>
+                            <Link to={appRoutes.EXIT}>
+                                <S.HeaderExit>
+                                <span type="button" className="_hover03">
+                                    Выйти
+                                </span>
+                                </S.HeaderExit>
+                            </Link>
+                            </S.Lala>
+                        </S.HeaderpopUserSet>)}
+                    </S.HeaderNav>
+                </S.HeaderBlock>
+            </Container>
+        </S.StyledHeader>
+    )
 }
+
+export default Header

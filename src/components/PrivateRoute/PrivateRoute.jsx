@@ -1,8 +1,9 @@
-import { Navigate, Outlet } from "react-router-dom";
-import { appRoutes } from "../../lib/appRoutes";
-import { useUser } from "../Hooks/useUser";
+import {Outlet, Navigate} from "react-router-dom"
+import { appRoutes } from "../../Styleds/lib/appRoutes"
+import { useUser } from "../../hooks/useUser"
+
 
 export default function PrivateRoute() {
-  const { user } = useUser();
-  return user ? <Outlet /> : <Navigate to={appRoutes.SIGNIN} />;
+    const {user} = useUser()
+    return user ? <Outlet/> : <Navigate to={appRoutes.SIGNIN}/>
 }

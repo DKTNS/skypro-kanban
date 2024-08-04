@@ -1,83 +1,88 @@
+import { Link, useNavigate } from "react-router-dom";
+import { ModalBlockDiv, ModalDiv, ModalFormGroupDiv, ModalFormatLoginForm, ModalInputDiv, ModalTtDiv } from "../SigninPage/SigninPage.styled";
+import { BodySignup, ContainerSignup, ModalBtnSignup, ModalInput, WraperDiv } from "./SignupPage.styled";
 import { useState } from "react";
 import { signUp } from "../../api";
-import { appRoutes } from "../../lib/appRoutes";
-import { useNavigate, Link } from "react-router-dom";
-import { useUser } from "../../components/Hooks/useUser";
-import * as SUP from "./SignupPage.styled"
+import { appRoutes } from "../../Styleds/lib/appRoutes";
+import { useUser } from "../../hooks/useUser";
+
+
+
 
 export default function SignupPage() {
-  const { login } = useUser();
-  const navigate = useNavigate();
-  const [regData, setRegData] = useState({
-    login: "",
-    name: "",
-    password: "",
-  });
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const {login} = useUser();
+    const navigate = useNavigate();
+ 
+    const [regData, setRegData] = useState({ login: "", name: "", password: "" })
 
-    setRegData({
-      ...regData, // Копируем текущие данные из состояния
-      [name]: value, // Обновляем нужное поле
-    });
-  };
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    await signUp(regData)
-      .then((data) => {
-        login(data.user);
-        navigate(appRoutes.MAIN);
-      })
-      .catch((error) => {
-        alert(error.message + ": попробуйте повторить запрос");
-      });
-  };
-  return (
-    <SUP.WrapperSignupDiv>
-      <SUP.ContainerSignup>
-        <SUP.SignupModal>
-          <SUP.SignupModalBlock>
-            <SUP.SignupModalTtl>
-              <h2>Регистрация</h2>
-            </SUP.SignupModalTtl>
-            <SUP.SignupModalFormLogin id="formLogUp" action="#">
-              <SUP.SignupModalInput
-                type="text"
-                onChange={handleInputChange}
-                name="name"
-                id="first-name"
-                value={regData.name}
-                placeholder="Имя"
-              />
-              <SUP.SignupModalInput
-                type="text"
-                onChange={handleInputChange}
-                name="login"
-                id="loginReg"
-                value={regData.login}
-                placeholder="Эл. почта"
-              />
-              <SUP.SignupModalInput
-                type="password"
-                onChange={handleInputChange}
-                name="password"
-                value={regData.password}
-                id="passwordFirst"
-                placeholder="Пароль"
-              />
-              <SUP.SignupModalBtnEnter onClick={handleRegister}>
-                Зарегистрироваться{" "}
-              </SUP.SignupModalBtnEnter>
-              <SUP.SignupModalFormGroup>
-                <p>
-                  Уже есть аккаунт?{" "}
-                  <Link to={appRoutes.SIGNIN}><span>Войдите здесь</span></Link>
-                </p>
-              </SUP.SignupModalFormGroup>
-            </SUP.SignupModalFormLogin>
-          </SUP.SignupModalBlock>
-        </SUP.SignupModal>
-      </SUP.ContainerSignup>
-    </SUP.WrapperSignupDiv>
-  );
+    const handleInputChange = (e) => {
+        const { name, value } = e.target; // Извлекаем имя поля и его значение
+
+        setRegData({
+            ...regData, // Копируем текущие данные из состояния
+            [name]: value, // Обновляем нужное поле
+        });
+    };
+
+    const handleReg = async() => {
+        await signUp(regData).then((data) => {
+            login(data.user)
+            navigate(appRoutes.MAIN);
+        })
+        
+    };
+
+    return (
+        <BodySignup>
+        <WraperDiv>
+            <ContainerSignup>
+                <ModalDiv>
+                    <ModalBlockDiv>
+                        <ModalTtDiv>
+                            <h2>Регистрация</h2>
+                        </ModalTtDiv>
+                        <ModalFormatLoginForm>
+                            <ModalInputDiv>
+                            <ModalInput className="modal__input first-name" 
+                            value={regData.name}
+                            onChange={handleInputChange}
+                            type="text" 
+                            name="name" 
+                            id="first-name" 
+                            placeholder="Имя">
+                            </ModalInput>
+                            <ModalInput className="modal__input login"
+                            value={regData.login}
+                            onChange={handleInputChange} 
+                            type="text" 
+                            name="login" 
+                            id="loginReg" 
+                            placeholder="Эл. почта">
+                            </ModalInput>
+                            <ModalInput className="modal__input password-first" 
+                            value={regData.password}
+                            onChange={handleInputChange}
+                            type="password" 
+                            name="password" 
+                            id="passwordFirst" 
+                            placeholder="Пароль">                               
+                            </ModalInput>
+                            </ModalInputDiv>
+                            <ModalBtnSignup onClick={handleReg}>
+                                Зарегистрироваться
+                            </ModalBtnSignup>
+                            <ModalFormGroupDiv>
+                                <p>Уже есть аккаунт?&nbsp;
+                                    <Link to={appRoutes.SIGNIN}>
+                                        Войдите здесь
+                                    </Link>
+                                </p>
+                            </ModalFormGroupDiv>
+                        </ModalFormatLoginForm>
+                    </ModalBlockDiv>
+                </ModalDiv>
+            </ContainerSignup>
+        </WraperDiv>
+        </BodySignup>
+    )
 }
