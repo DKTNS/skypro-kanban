@@ -1,4 +1,4 @@
-import PopNewCard from "../../components/popupes/PopNewCard/PopNewCard";
+import PopNewCard from "../../components/popup/popnewcard/PopUpNewCard";
 
 
 

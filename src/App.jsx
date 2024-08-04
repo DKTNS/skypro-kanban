@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { appRoutes } from "./lib/appRoutes";
+import { appRoutes } from "./Styleds/lib/appRoutes";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import TaskPage from "./pages/TaskPage/TaskPage";
 import ExitPage from "./pages/ExitPage/ExitPage";

@@ -1,4 +1,4 @@
-import { Container } from "../../styled/Common.styled"
+import { Container } from "../../Styleds/Common.styled.js"
 import * as S from "./MainContent.styled.js";
 
 

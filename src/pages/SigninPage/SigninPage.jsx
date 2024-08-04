@@ -14,9 +14,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { ModalInput } from "../SignupPage/SignupPage.styled";
 import { signIn } from "../../api";
-import { useUser } from "../../Hooks/useUser";
-import { appRoutes } from "../../styled/lib/appRoutes";
-
+import { appRoutes } from "../../Styleds/lib/appRoutes";
+import { useUser } from "../../hooks/useUser";
 
 export default function SigninPage() {
   const { login } = useUser();

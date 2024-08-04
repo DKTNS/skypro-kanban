@@ -1,9 +1,11 @@
 import { useState } from "react";
 import * as S from "./Header.styled.js";
-import { Container } from "../../styled/Common.styled.js";
+import { Container } from "../../Styleds/Common.styled.js";
 import { Link } from "react-router-dom";
-import { appRoutes } from "../../styled/lib/appRoutes.js";
+import { appRoutes } from "../../Styleds/lib/appRoutes.js";
 import { useUser } from "../../hooks/useUser.js";
+
+
 
 function Header() {
     const {user} = useUser();

@@ -1,17 +1,21 @@
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
-import * as S from "./PopUpBrowse.styled";
+import * as S from "./PopUpBrowse.Styled";
 import { useState } from "react";
 import { deleteTodos, putTodos } from "../../../api";
-import { appRoutes } from "../../../lib/appRoutes";
-import { useTasks } from "../../../Hooks/useTasks";
-import { useUser } from "../../../Hooks/useUser";
+import { appRoutes } from "../../../Styleds/lib/appRoutes";
+import { topicHeader } from "../../../Styleds/lib/topic";
+import { useUser } from "../../../hooks/useUser";
+import { useTasks } from "../../../hooks/useTasks";
+import { TopicText } from "../../Card/Cardsitem.styled";
+import Calendar from "../../Calendar/Calendar";
+
 
 export default function PopUpBrowse() {
   const { id } = useParams();
   const { user } = useUser();
   const { cards, setCards } = useTasks();
   const navigate = useNavigate();
-  
+
   const [isEdited, setIsEdited] = useState(false);
   const openedCard = cards.find((card) => card._id == `${id}`);
 
@@ -34,7 +38,7 @@ export default function PopUpBrowse() {
       })
       .catch((error) => {
         console.log(error);
-        alert(error);
+        console.error(error);
       });
   };
 
@@ -47,13 +51,13 @@ export default function PopUpBrowse() {
     console.log(taskData);
     putTodos({ token: user.token, id: id, taskData: taskData })
       .then((newCard) => {
-        console.log(newCard)
+        console.log(newCard);
         setCards(newCard.tasks);
         navigate(appRoutes.MAIN);
       })
       .catch((error) => {
         console.log(error);
-        alert(error);
+        console.error(error);
       });
   };
 
@@ -74,16 +78,18 @@ export default function PopUpBrowse() {
         <S.PopBrowseBlock>
           <S.PopBrowseContent>
             <S.PopBrowseTopBlock>
-              <S.PopBroweTitle>Название задачи:  {openedCard.title}</S.PopBroweTitle>
+              <S.PopBroweTitle>
+                Название задачи: {openedCard.title}
+              </S.PopBroweTitle>
               <S.PopBroweColor $themeColor={topicHeader[openedCard.topic]}>
-              <TopicText $themeColor={topicHeader[openedCard.topic]}>
+                <TopicText $themeColor={topicHeader[openedCard.topic]}>
                   {openedCard.topic}
                 </TopicText>
               </S.PopBroweColor>
             </S.PopBrowseTopBlock>
             <S.PopBrowseStatus>
               <S.StatusPsubTtlP>Статус: {openedCard.status}</S.StatusPsubTtlP>
-            {isEdited && (
+              {isEdited && (
                 <S.StatusThemesDiv>
                   <S.OpenedCardTheme
                     type="radio"
@@ -92,7 +98,9 @@ export default function PopUpBrowse() {
                     value="Без статуса"
                     onChange={handleInputChange}
                   />
-                  <S.StatusThemeLabel htmlFor="radio1">Без статуса</S.StatusThemeLabel>
+                  <S.StatusThemeLabel htmlFor="radio1">
+                    Без статуса
+                  </S.StatusThemeLabel>
 
                   <S.OpenedCardTheme
                     type="radio"
@@ -101,7 +109,9 @@ export default function PopUpBrowse() {
                     value="Нужно сделать"
                     onChange={handleInputChange}
                   />
-                  <S.StatusThemeLabel htmlFor="radio2">Нужно сделать</S.StatusThemeLabel>
+                  <S.StatusThemeLabel htmlFor="radio2">
+                    Нужно сделать
+                  </S.StatusThemeLabel>
 
                   <S.OpenedCardTheme
                     type="radio"
@@ -110,7 +120,9 @@ export default function PopUpBrowse() {
                     value="В работе"
                     onChange={handleInputChange}
                   />
-                  <S.StatusThemeLabel htmlFor="radio3">В работе</S.StatusThemeLabel>
+                  <S.StatusThemeLabel htmlFor="radio3">
+                    В работе
+                  </S.StatusThemeLabel>
 
                   <S.OpenedCardTheme
                     type="radio"
@@ -119,7 +131,9 @@ export default function PopUpBrowse() {
                     value="Тестирование"
                     onChange={handleInputChange}
                   />
-                  <S.StatusThemeLabel htmlFor="radio4">Тестирование</S.StatusThemeLabel>
+                  <S.StatusThemeLabel htmlFor="radio4">
+                    Тестирование
+                  </S.StatusThemeLabel>
 
                   <S.OpenedCardTheme
                     type="radio"
@@ -128,7 +142,9 @@ export default function PopUpBrowse() {
                     value="Готово"
                     onChange={handleInputChange}
                   />
-                  <S.StatusThemeLabel htmlFor="radio5">Готово</S.StatusThemeLabel>
+                  <S.StatusThemeLabel htmlFor="radio5">
+                    Готово
+                  </S.StatusThemeLabel>
                 </S.StatusThemesDiv>
               )}
             </S.PopBrowseStatus>
@@ -168,50 +184,48 @@ export default function PopUpBrowse() {
                 setSelectedDate={setSelectedDate}
               />
             </S.PopBrowseWrap>
-            {!isEdited && (<S.PopBrowseButtonBrowse>
-              <S.ButtonGroup>
-                <S.ButtonChengeDelete 
-                onClick={() => {
+            {!isEdited && (
+              <S.PopBrowseButtonBrowse>
+                <S.ButtonGroup>
+                  <S.ButtonChengeDelete
+                    onClick={() => {
                       setIsEdited(!isEdited);
-                    }}>
-                  Редактировать задачу
-                </S.ButtonChengeDelete>
-                <S.ButtonChengeDelete onClick={deleteTask}>
-                Удалить задачу
-                </S.ButtonChengeDelete>
-              </S.ButtonGroup>
-              <Link to={appRoutes.MAIN}>
-                <S.ButtonClose>Закрыть</S.ButtonClose>
-              </Link>
-            </S.PopBrowseButtonBrowse>)}
-            {isEdited && (<S.PopBrowseButtonBrowse>
-            <S.ButtonGroup>
-            
-              <S.ButtonChengeDelete
-                onClick={handleFormSubmit}
-              >
-                Сохранить
-              </S.ButtonChengeDelete>
-              <S.ButtonChengeDelete
-                onClick={() => {
-                  setIsEdited(!isEdited);
-                }}
-              >
-                Отменить
-              </S.ButtonChengeDelete>
+                    }}
+                  >
+                    Редактировать задачу
+                  </S.ButtonChengeDelete>
+                  <S.ButtonChengeDelete onClick={deleteTask}>
+                    Удалить задачу
+                  </S.ButtonChengeDelete>
+                </S.ButtonGroup>
+                <Link to={appRoutes.MAIN}>
+                  <S.ButtonClose>Закрыть</S.ButtonClose>
+                </Link>
+              </S.PopBrowseButtonBrowse>
+            )}
+            {isEdited && (
+              <S.PopBrowseButtonBrowse>
+                <S.ButtonGroup>
+                  <S.ButtonChengeDelete onClick={handleFormSubmit}>
+                    Сохранить
+                  </S.ButtonChengeDelete>
+                  <S.ButtonChengeDelete
+                    onClick={() => {
+                      setIsEdited(!isEdited);
+                    }}
+                  >
+                    Отменить
+                  </S.ButtonChengeDelete>
 
-              <S.ButtonChengeDelete
-                onClick={deleteTask}
-              >
-                Удалить задачу
-              </S.ButtonChengeDelete>
-              </S.ButtonGroup>
-            <Link to={appRoutes.MAIN}>
-              <S.ButtonClose>Закрыть</S.ButtonClose>
-            </Link>
-          
-          </S.PopBrowseButtonBrowse>
-        )}
+                  <S.ButtonChengeDelete onClick={deleteTask}>
+                    Удалить задачу
+                  </S.ButtonChengeDelete>
+                </S.ButtonGroup>
+                <Link to={appRoutes.MAIN}>
+                  <S.ButtonClose>Закрыть</S.ButtonClose>
+                </Link>
+              </S.PopBrowseButtonBrowse>
+            )}
           </S.PopBrowseContent>
         </S.PopBrowseBlock>
       </S.PopBrowseContainer>

@@ -2,9 +2,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { ModalBlockDiv, ModalDiv, ModalFormGroupDiv, ModalFormatLoginForm, ModalInputDiv, ModalTtDiv } from "../SigninPage/SigninPage.styled";
 import { BodySignup, ContainerSignup, ModalBtnSignup, ModalInput, WraperDiv } from "./SignupPage.styled";
 import { useState } from "react";
-import { useUser } from "../../Hooks/useUser";
 import { signUp } from "../../api";
-import { appRoutes } from "../../styled/lib/appRoutes";
+import { appRoutes } from "../../Styleds/lib/appRoutes";
+import { useUser } from "../../hooks/useUser";
+
 
 
 

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
-import { topicStyles } from "../../../lib/topic";
 import { TopicText } from "../../Card/Card.styled";
 import { hover01, hover03 } from "../../Common/Common.styled";
+import { topicStyles } from "../../../Styleds/lib/topic";
 
 
 

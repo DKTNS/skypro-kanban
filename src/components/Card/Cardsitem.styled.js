@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import { topicStyles } from "../../styled/lib/topic";
+import { topicStyles } from "../../Styleds/lib/topic";
 
 export const TopicText = styled.p`
   display: flex;

@@ -1,4 +1,4 @@
-import PopBrowse from "../../components/popupes/PopBrowse/PopBrowse";
+import PopBrowse from "../../components/popup/popbrowse/PopUpBrowse";
 
 
 

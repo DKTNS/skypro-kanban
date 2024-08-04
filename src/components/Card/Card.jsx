@@ -1,8 +1,8 @@
 import { format } from "date-fns";
-import { topicHeader } from "../../styled/lib/topic";
 import * as S from "./Cardsitem.styled.js";
 import {Link} from "react-router-dom";
 import ru from "date-fns/locale/ru";
+import { topicHeader } from "../../Styleds/lib/topic.js";
 
 function Card({ topic, title, date, id }) {
     return (

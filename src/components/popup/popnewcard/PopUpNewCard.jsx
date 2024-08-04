@@ -1,12 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import * as TP from "./PopUpNewCard.styled.js";
-import { useState } from "react";
-import { useUser } from "../../../Hooks/useUser.js";
-import { appRoutes } from "../../../lib/appRoutes.js";
-import { CalendarR } from "../../Calendar/Calendar.syled.js";
-import { useTasks } from "../../../Hooks/useTasks.js";
+import React, { useState } from "react";
 import { postTodos } from "../../../api.js";
-
+import { appRoutes } from "../../../Styleds/lib/appRoutes.js";
+import { useUser } from "../../../hooks/useUser.js";
+import { useTasks } from "../../../hooks/useTasks.js";
+import Calendar from "../../Calendar/Calendar.jsx";
 
 export default function PopUpNewCard() {
   const { user } = useUser();
@@ -15,38 +14,39 @@ export default function PopUpNewCard() {
   const navigate = useNavigate();
 
   const [newTask, setNewTask] = useState({
-      title: "",
-      description: "",
-      topic: ""
+    title: "",
+    description: "",
+    topic: "",
   });
   const handleFormSubmit = async (e) => {
-      e.preventDefault();
-      const taskData = {
-          ...newTask,
-          date: selectedDate,
-          token: user.token,
-
-      }
-      await postTodos(taskData).then((data) => {
-          console.log(data);
-          if (data.error) {
-              return alert("Пожалуйста заполните все поля");
-          }
-          setCards(data.tasks);
-          console.log(data.tasks);
-          navigate(appRoutes.MAIN);
-      }).catch((error) => {
-          alert(error.message);
+    e.preventDefault();
+    const taskData = {
+      ...newTask,
+      date: selectedDate,
+      token: user.token,
+    }
+    await postTodos(taskData)
+      .then((data) => {
+        console.log(data);
+        if (data.error) {
+          return alert("Пожалуйста заполните все поля");
+        }
+        setCards(data.tasks);
+        console.log(data.tasks);
+        navigate(appRoutes.MAIN);
       })
+      .catch((error) => {
+        console.error(error.message);
+      });
   };
 
   const handleInputChange = (e) => {
-      const { name, value } = e.target; // Извлекаем имя поля и его значение
-      console.log(name, value)
-      setNewTask({
-          ...newTask, // Копируем текущие данные из состояния
-          [name]: value, // Обновляем нужное поле
-      });
+    const { name, value } = e.target; // Извлекаем имя поля и его значение
+    console.log(name, value);
+    setNewTask({
+      ...newTask, // Копируем текущие данные из состояния
+      [name]: value, // Обновляем нужное поле
+    });
   };
 
   return (
@@ -86,7 +86,7 @@ export default function PopUpNewCard() {
               </TP.FormNewBlock>
             </TP.PopNewCardForm>
 
-            <CalendarR
+            <Calendar
               selectedDate={selectedDate}
               setSelectedDate={setSelectedDate}
             />
