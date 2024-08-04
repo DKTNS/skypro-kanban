@@ -1,9 +1,9 @@
-import PopUpExit from "../../components/popup/popexit/PopUpExit";
+import PopExit from "../../components/popupes/PopExit/PopExit";
 
 
 export default function ExitPage({ logout }) {
 	return (
-		<PopUpExit logout={logout} />
+		<PopExit logout={logout} />
 	)
 }
 

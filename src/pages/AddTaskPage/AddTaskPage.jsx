@@ -1,7 +1,7 @@
-import PopUpNewCard from "../../components/popup/popnewcard/PopUpNewCard";
+import PopNewCard from "../../components/popupes/PopNewCard/PopNewCard";
 
 
 
 export default function AddTaskPage() {
-    return <PopUpNewCard />;
+    return <PopNewCard />;
   }

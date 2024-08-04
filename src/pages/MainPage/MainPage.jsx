@@ -1,31 +1,30 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import Header from "../../components/Header/Header";
 import MainContent from "../../components/MainContent/MainContent";
-import MainColumn from "../../components/MainColumn/MainColumn";
+import { useTasks } from "../../hooks/useTasks";
+import { useUser } from "../../hooks/useUser";
 import { getTodos } from "../../api";
-import { useUser } from "../../Hooks/useUser";
-import { useTasks } from "../../Hooks/useTasks";
-
+import Column from "../../components/Column/Column";
+import Header from "../../components/Header/Header";
 
 
 function MainPage() {
-  const { cards, setCards } = useTasks();
+
+  const {cards, setCards} = useTasks();
   const [isLoading, setIsLoading] = useState(true);
 
-  const { user } = useUser();
+  const {user} = useUser();
+
 
   useEffect(() => {
-    getTodos({ token: user.token })
-      .then((todos) => {
-        console.log(todos);
-        setCards(todos.tasks);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        throw new Error(error);
-      });
-  }, [user, setCards]);
+    getTodos({ token: user.token }).then((todos) => {
+      console.log(todos);
+      setCards(todos.tasks);
+      setIsLoading(false);
+    }).catch((error) => {
+      alert(error)
+    })
+  }, [user, setCards])
 
   const statusList = [
     "Без статуса",
@@ -37,27 +36,23 @@ function MainPage() {
 
   return (
     <>
-      <Outlet />
+    <Outlet/>
       <div className="wrapper">
         <Outlet />
         <Header />
-        {isLoading ? (
-          "Загрузка..."
-        ) : (
+        {isLoading ? ("Загрузка...") : (
           <MainContent>
             {statusList.map((status) => (
-              <MainColumn
+              <Column
                 title={status}
                 key={status}
-                cardList={cards?.filter((card) => card.status === status)}
+                cardList={cards.filter((card) => card.status === status)}
               />
             ))}
-          </MainContent>
-        )}
+          </MainContent>)}
       </div>
     </>
-  );
+  )
 }
 
-export default MainPage;
-
+export default MainPage

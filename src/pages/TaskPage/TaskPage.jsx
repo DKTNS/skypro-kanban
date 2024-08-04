@@ -1,8 +1,8 @@
-import PopUpBrowse from "../../components/popup/popbrowse/PopUpBrowse";
+import PopBrowse from "../../components/popupes/PopBrowse/PopBrowse";
 
 
 
 export default function TaskPage() {
-    return <PopUpBrowse />;
+    return <PopBrowse />;
   }
   

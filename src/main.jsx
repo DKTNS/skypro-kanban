@@ -1,18 +1,18 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import { BrowserRouter } from "react-router-dom";
-import { UserProvider } from "./components/Contexts/user.jsx";
-import { TaskProvider } from "./components/Contexts/tasks.jsx";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import { BrowserRouter } from "react-router-dom"
+import { UserProvider } from './contexts/user.jsx'
+import { TaskProvider } from './contexts/tasks.jsx'
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <React.StrictMode>
-      <TaskProvider>
-        <UserProvider>
-          <App />
-        </UserProvider>
-      </TaskProvider>
+      <UserProvider>
+        <TaskProvider>
+        <App />
+        </TaskProvider>
+      </UserProvider>
     </React.StrictMode>
   </BrowserRouter>
-);
+)

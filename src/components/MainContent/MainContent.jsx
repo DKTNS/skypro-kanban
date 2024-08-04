@@ -1,14 +1,19 @@
-import { Container } from "../../Styled/Common/Common.styled";
-import * as MC from "./MainContent.style";
+import { Container } from "../../styled/Common.styled"
+import * as S from "./MainContent.styled.js";
 
-export default function MainContent({ children }) {
-  return (
-    <MC.MainContentMain>
-      <Container>
-        <MC.MainContentMainBlock>
-          <MC.MainContentMainContent>{children}</MC.MainContentMainContent>
-        </MC.MainContentMainBlock>
-      </Container>
-    </MC.MainContentMain>
-  );
+
+function MainContent({children}) {
+    return (
+        <S.Main>
+            <Container>
+                <S.MainBlock>
+                    <S.MainContent>
+                        {children}
+                    </S.MainContent>
+                </S.MainBlock>
+            </Container>
+        </S.Main>
+    )
 }
+
+export default MainContent
